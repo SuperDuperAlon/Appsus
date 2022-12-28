@@ -5,21 +5,28 @@ import { MailList } from "../cmps/mail-list.jsx";
 import { MailSearchBar } from "../cmps/mail-search.jsx";
 
 import { mailService } from "../services/mail.service.js";
+import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 export function MailIndex() {
   const [emails, setEmails] = useState([]);
-  console.log(emails);
+
   useEffect(() => {
     loadEmails();
     console.log(emails);
   }, []);
 
-  // var emails = loadEmails()
-  console.log(emails);
   function loadEmails() {
     mailService.query().then((emails) => setEmails(emails));
   }
-  console.log(emails);
+
+  function onRemoveEmail(emailId) {
+    console.log(emailId);
+    mailService.remove(emailId).then(() => {
+      const updatedEmails = emails.filter((email) => email.id !== emailId);
+      setEmails(updatedEmails);
+    });
+  }
+
   if (!emails) return <h1>Loading</h1>;
   console.log(emails);
   return (
@@ -27,7 +34,7 @@ export function MailIndex() {
       <h1>mail app</h1>
       <MailSearchBar />
       <MailNav />
-      <MailList emails={emails} />
+      <MailList emails={emails} onRemoveEmail={onRemoveEmail} />
     </section>
   );
 }

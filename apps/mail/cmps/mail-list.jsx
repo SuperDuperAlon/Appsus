@@ -1,6 +1,9 @@
 import { mailService } from "../services/mail.service.js";
+import { asyncStorageServe } from "../../../services/async-storage.service.js";
+
 import { MailPreview } from "./mail-preview.jsx";
-export function MailList({ emails }) {
+
+export function MailList({ emails, onRemoveEmail }) {
   console.log(emails);
   return (
     <table border="1">
@@ -16,7 +19,7 @@ export function MailList({ emails }) {
       </thead>
       <tbody>
         {emails.map((email) => (
-          <MailPreview key={email.id} email={email} />
+          <MailPreview key={email.id} email={email} onRemoveEmail={onRemoveEmail} />
         ))}
       </tbody>
     </table>

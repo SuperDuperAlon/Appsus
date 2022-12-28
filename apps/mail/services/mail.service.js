@@ -1,5 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
 import { storageService } from "../../../services/storage.service.js";
+import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 const EMAIL_KEY = "emailDB";
 _createEmails();
@@ -7,7 +8,7 @@ _createEmails();
 
 export const mailService = {
   query,
-  //   remove,
+  remove,
   //   get,
   //   post,
   //   put,
@@ -16,7 +17,12 @@ export const mailService = {
 function query() {
   const email = storageService.loadFromStorage(EMAIL_KEY);
   console.log(email);
-  return new Promise((res, rej ) => res(email));
+  return new Promise((res, rej) => res(email));
+}
+
+function remove(emailId) {
+    console.log(emailId);
+    return asyncStorageService.remove(EMAIL_KEY, emailId)
 }
 
 function _createEmails() {
@@ -29,7 +35,9 @@ function _createEmails() {
         body: "Would love to catch up sometimes",
         isRead: false,
         sentAt: 1551133930594,
-        to: "momo@momo.com",
+        removedAt: null,
+        from: "momo@momo.com",
+        to: "user@appsus.com",
       },
       {
         id: "e102",
@@ -37,7 +45,9 @@ function _createEmails() {
         body: "This is the second email",
         isRead: false,
         sentAt: 1551133930594,
-        to: "popo@coco.com",
+        removedAt: null,
+        from: "popo@popo.com",
+        to: "user@appsus.com",
       },
       {
         id: "e103",
@@ -45,7 +55,9 @@ function _createEmails() {
         body: "This is the third email",
         isRead: true,
         sentAt: 1551133930594,
-        to: "jojo@rabbit.com",
+        removedAt: null,
+        from: "jojo@rabbit.com",
+        to: "user@appsus.com",
       },
     ];
 
