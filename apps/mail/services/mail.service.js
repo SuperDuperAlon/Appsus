@@ -9,20 +9,27 @@ _createEmails();
 export const mailService = {
   query,
   remove,
+  getDefaultFilter,
   //   get,
   //   post,
   //   put,
 };
 
-function query() {
-  const email = storageService.loadFromStorage(EMAIL_KEY);
-  console.log(email);
-  return new Promise((res, rej) => res(email));
+function query(filterBy = getDefaultFilter()) {
+  return asyncStorageService.query(EMAIL_KEY).then((emails) => {
+    const regex = new RegExp(filterBy.from, "i");
+    emails = emails.filter((email) => regex.test(email.from));
+    return emails;
+  });
 }
 
 function remove(emailId) {
-    console.log(emailId);
-    return asyncStorageService.remove(EMAIL_KEY, emailId)
+  console.log(emailId);
+  return asyncStorageService.remove(EMAIL_KEY, emailId);
+}
+
+function getDefaultFilter() {
+  return { from: "" };
 }
 
 function _createEmails() {

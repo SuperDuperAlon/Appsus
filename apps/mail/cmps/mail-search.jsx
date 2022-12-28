@@ -1,8 +1,46 @@
-export function MailSearchBar() {
+const { useState, useEffect, useRef } = React;
+
+import { mailService } from "../../mail/services/mail.service.js";
+
+export function MailSearchBar({ onSetFilter }) {
+  const [filterByToEdit, setFilterByToEdit] = useState(
+    mailService.getDefaultFilter()
+  );
+  const elInputRef = useRef(null);
+
+  useEffect(() => {
+    elInputRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    onSetFilter(filterByToEdit);
+  }, [filterByToEdit]);
+
+  function handleChange({ target }) {
+    let { value, name: field, type } = target;
+    value = type === "number" ? +value : value;
+    setFilterByToEdit((prevFilter) => {
+      return {
+        ...prevFilter,
+        [field]: value,
+      };
+    });
+  }
+
   return (
-    <section className="mail-search-bar">
-      <h1>This is the mail search bar</h1>
-      <input type="text" />
+    <section className="mail-search">
+      <form>
+        <label htmlFor="sender"></label>
+        <input
+          type="text"
+          id="sender"
+          name="from"
+          placeholder="🥦 Search Mail"
+          value={filterByToEdit.from}
+          onChange={handleChange}
+          ref={elInputRef}
+        />
+      </form>
     </section>
   );
 }

@@ -19,6 +19,9 @@
 
 /* Cmps */
 
+/* main cmps */
+@import './apps/mail.css';
+
 /* Note cmps */
 @import './note/note-list.css';
 @import './note/note-add.css';
@@ -27,6 +30,7 @@
 @import url('./email/email-list.css');
 @import url('./email/email-search-bar.css');
 @import url('./email/email-side-menu.css');
+@import url('./email/email-compose-btn.css');
 
 /* Global Cmps */
 @import './cmps/user-msg.css';
