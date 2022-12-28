@@ -50,4 +50,3 @@ function NoteVideo({info}) {
         <iframe src={info.url} title="your video"></iframe>
     </div>
 }
-
