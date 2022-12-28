@@ -1,5 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
 import { storageService } from "../../../services/storage.service.js";
+import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 const EMAIL_KEY = "emailDB";
 _createEmails();
@@ -20,7 +21,8 @@ function query() {
 }
 
 function remove(emailId) {
-  return storageService.remove(EMAIL_KEY, emailId);
+    console.log(emailId);
+    return asyncStorageService.remove(EMAIL_KEY, emailId)
 }
 
 function _createEmails() {
