@@ -1,5 +1,7 @@
 const { useState, Fragment, useEffect } = React;
 
+import { mailService } from "../services/mail.service.js";
+
 export function MailPreview({ email }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isUnread, setIsRead] = useState('white')
@@ -16,13 +18,13 @@ function changeReadStatus() {
       <tr
         onClick={() => {
           setIsExpanded(!isExpanded);
-          changeReadStatus()
+        //   changeReadStatus()
         }}
       >
         <td>🐱‍🚀</td>
-        <td>Sender: {email.to}</td>
-        <td>Subject: {email.subject} - {email.body}</td>
-        <td>🗑</td>
+        <td>{email.from}</td>
+        <td>{email.subject} - {email.body}</td>
+        <td><button onClick={onRemoveEmail}>🗑</button> </td>
         <td>✉</td>
         <td>Time</td>   
       </tr>

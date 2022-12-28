@@ -8,18 +8,37 @@ import { mailService } from "../services/mail.service.js";
 
 export function MailIndex() {
   const [emails, setEmails] = useState([]);
-  console.log(emails);
+
   useEffect(() => {
     loadEmails();
     console.log(emails);
   }, []);
 
-  // var emails = loadEmails()
-  console.log(emails);
   function loadEmails() {
     mailService.query().then((emails) => setEmails(emails));
   }
-  console.log(emails);
+
+  function onRemoveEmail(emailId) {
+    mailService.renove(emailId).then(() => {
+      const updatedEmails = emails.filter(email => email.id !== emailId)
+      setCars(updatedEmails)
+    })
+  }
+
+  function onRemoveCar(carId) {
+    carService.remove(carId).then(() => {
+        const updatedCars = cars.filter(car => car.id !== carId)
+        setCars(updatedCars)
+        // eventBusService.emit('show-user-msg', {txt: 'CarRemoved', type: 'success'})
+        showSuccessMsg('Car removed')
+    })
+        .catch((err) => {
+            console.log('Had issues removing', err)
+            showErrorMsg('Could not remove car, try again please!')
+        })
+}
+
+
   if (!emails) return <h1>Loading</h1>;
   console.log(emails);
   return (
@@ -27,7 +46,7 @@ export function MailIndex() {
       <h1>mail app</h1>
       <MailSearchBar />
       <MailNav />
-      <MailList emails={emails} />
+      <MailList emails={emails} onRemoveEmail={onRemoveEmail} />
     </section>
   );
 }

@@ -2,3 +2,13 @@
     font-family: Roboto;
     src: url(/assets/fonts/Roboto/Roboto-Regular.ttf);
 }
+
+@font-face{
+    font-family: Roboto-Bold;
+    src: url(/assets/fonts/Roboto/Roboto-Bold.ttf);
+}
+
+@font-face{
+    font-family: Bangers;
+    src: url(/assets/fonts/Bangers/Bangers-Regular.ttf);
+}
