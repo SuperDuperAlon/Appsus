@@ -14,14 +14,14 @@ export function MailPreview({ email, onRemoveEmail }) {
   console.log(email);
   return (
     <Fragment>
-      <tr>
+      <tr
+        onClick={() => {
+          setIsExpanded(!isExpanded);
+        }}
+      >
         <td>🐱‍🚀</td>
         <td>{email.from}</td>
-        <td
-          onClick={() => {
-            setIsExpanded(!isExpanded);
-          }}
-        >
+        <td>
           {email.subject} - {email.body}
         </td>
         <td>
