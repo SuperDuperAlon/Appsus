@@ -1,6 +1,6 @@
 
 import { utilService } from "../../../services/util.service.js"
-import { storageService } from "../../../services/async-storage.service.js"
+import { asyncStorageService } from "../../../services/async-storage.service.js"
 
 export const noteService = {
     getEmptyNote,
@@ -15,7 +15,7 @@ _createNotes()
 
 
 function query() {
-    return storageService.query(NOTE_KEY)
+    return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
             // if (filterBy.txt) {
             //     const regex = new RegExp(filterBy.txt, 'i')
