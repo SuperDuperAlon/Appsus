@@ -43,7 +43,7 @@ function _createEmails() {
         id: "e103",
         subject: "Miss you!",
         body: "This is the third email",
-        isRead: false,
+        isRead: true,
         sentAt: 1551133930594,
         to: "jojo@rabbit.com",
       },

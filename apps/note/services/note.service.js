@@ -68,7 +68,7 @@ function _createNotes() {
                 id: utilService.makeId(),
                 type: "note-video",
                 info: {
-                    url: "https://www.youtube.com/watch?v=GTCd0hmjHBs&t=1s",
+                    url: "https://www.youtube.com/embed/GTCd0hmjHBs",
                 }
             }
         ]
