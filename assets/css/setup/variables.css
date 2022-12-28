@@ -1,3 +1,10 @@
 :root {
     --main-bg-color: lightblue;
+
+    /* Notes Color Palletet */
+    --note1: #FD8A8A;
+    --note2: #F1F7B5;
+    --note3: #A8D1D1;
+    --note4: #9EA1D4;
+    --note-default: white;
 }
