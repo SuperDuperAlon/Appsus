@@ -20,7 +20,14 @@
 
 /* Cmps */
 
+/* Email Cmps */
+@import url('./email/email-list.css');
+@import url('./email/email-search-bar.css');
+@import url('./email/email-side-menu.css');
+
+/* Global Cmps */
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
 
 /* @import './apps/mail/cmps/mail-list.css'; */
+
