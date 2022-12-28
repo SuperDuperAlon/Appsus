@@ -1,0 +1,13 @@
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    border: none;
+}
+/* .note-add{
+    display: flex;
+    flex-direction: column;
+} */

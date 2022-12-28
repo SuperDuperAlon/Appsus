@@ -27,7 +27,6 @@ function DynamicCmp(props) {
 }
 
 function NoteTxt({ info }) {
-    // console.log(info)
     return <p>{info.txt}</p>
 }
 function NoteImg(props) {
@@ -37,7 +36,6 @@ function NoteImg(props) {
     </div>)
 }
 function NoteToDos(props) {
-    console.log(props);
     return <div>
         <ul>
             <h1>{props.info.label}</h1>

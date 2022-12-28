@@ -7,18 +7,21 @@
 
 @import './basics/base.css';
 @import './basics/helpers.css';
-/* @import './basics/layout.css'; */
+@import './basics/layout.css';
 
 /* Views */
 /* @import './views/home.css'; */
 
 /* @import './apps/note/views/note-app.css'; */
-/* views cmps */
-@import './apps/note/cmps/note-list.css';
+
 
 /* @import './apps/mail/views/mail-app.css'; */
 
 /* Cmps */
+
+/* Note cmps */
+@import './note/note-list.css';
+@import './note/note-add.css';
 
 /* Email Cmps */
 @import url('./email/email-list.css');

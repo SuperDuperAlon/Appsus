@@ -6,6 +6,7 @@ import { NoteFilter } from "../cmps/note-filter.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
 import {noteService} from "../services/note.service.js"
 
+
 export function NoteIndex() {
 
   let [notes, setNotes] = useState([])
@@ -16,16 +17,16 @@ export function NoteIndex() {
 
 
   function loadNotes(){
-    notes = noteService.getNotes()
-    setNotes(notes)
+    noteService.query()
+    .then((notes)=> setNotes(notes))
   }
 
 
   return (
     <div>
+      {/* <NoteFilter /> */}
+      <NoteAdd/>
       <NoteList notes={notes}/>
-      <NoteAdd />
-      <NoteFilter />
 
       <div>note app</div>
     </div>
