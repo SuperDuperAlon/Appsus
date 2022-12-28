@@ -1,21 +1,48 @@
 
 import { utilService } from "../../../services/util.service.js"
-import { storageService } from "../../../services/async-storage.service.js"
+import { asyncStorageService } from "../../../services/async-storage.service.js"
 
 export const noteService = {
     getEmptyNote,
-    query
+    query,
+    loadImageFromInput,
+    save
 }
 
 const NOTE_KEY = "noteDB"
 _createNotes()
 
 
+// function onImgInput(ev) {
+//     const img = loadImageFromInput(ev, renderImg)
+//     console.log(img);
+//     return img
+// }
 
+// CallBack func will run on success load of the img
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+    // After we read the file
+    reader.onload = (event) => {
+        let img = new Image() // Create a new html img element
+        img.src = event.target.result // Set the img src to the img file we read
+        // Run the callBack func, To render the img on the canvas
+        img.onload = () => onImageReady(img)
+    }
 
+    reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+
+}
+
+// function renderImg(img) {
+//     // Draw the img on the canvas
+//     // gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+//     // console.log(img);
+//     return img
+// }
 
 function query() {
-    return storageService.query(NOTE_KEY)
+    return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
             // if (filterBy.txt) {
             //     const regex = new RegExp(filterBy.txt, 'i')
@@ -30,6 +57,14 @@ function query() {
 
 function getEmptyNote(){
     return {id: '' , type:'', isPinned: false, info: {}, style: {backgroundColor: "white"}, }
+}
+
+function save(note) {
+    if (note.id) {
+        return asyncStorageService.put(NOTE_KEY, note)
+    } else {
+        return asyncStorageService.post(NOTE_KEY, note)
+    }
 }
 
 function _createNotes() {

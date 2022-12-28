@@ -7,6 +7,15 @@ form{
 input{
     border: none;
 }
+
+.add-button{
+    max-width: 100px;
+
+}
+
+.note-add{
+    width: 500px;
+}
 /* .note-add{
     display: flex;
     flex-direction: column;

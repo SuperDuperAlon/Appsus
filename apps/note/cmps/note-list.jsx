@@ -27,7 +27,10 @@ function DynamicCmp(props) {
 }
 
 function NoteTxt({ info }) {
-    return <p>{info.txt}</p>
+    return <div>
+        {info.title && <h1>{info.title}</h1> }
+        <p>{info.txt}</p>
+        </div>
 }
 function NoteImg(props) {
     return (<div>
