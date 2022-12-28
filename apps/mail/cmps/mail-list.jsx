@@ -4,7 +4,7 @@ export function MailList({emails}) {
 
 
 console.log(emails);
-    return <ul className="mail-list">
+    return <ul className="mail-list clean-list">
         {
             emails.map(email => <li key={email.id}>
                 <MailPreview mail={email} />
