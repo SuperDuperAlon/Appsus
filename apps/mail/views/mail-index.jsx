@@ -17,7 +17,7 @@ export function MailIndex() {
   // var emails = loadEmails()
   console.log(emails);
   function loadEmails() {
-    mailService.query().then((emails => setEmails(emails)));
+    mailService.query().then((emails) => setEmails(emails));
   }
   console.log(emails);
   if (!emails) return <h1>Loading</h1>;
@@ -25,9 +25,9 @@ export function MailIndex() {
   return (
     <section className="mail-index">
       <h1>mail app</h1>
+      <MailSearchBar />
       <MailNav />
       <MailList emails={emails} />
-      <MailSearchBar />
     </section>
   );
 }
