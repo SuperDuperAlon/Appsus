@@ -1,7 +1,7 @@
 export function MailNav() {
   return (
-    <aside className="main-nav clean-list">
-      <ul>
+    <aside className="main-nav ">
+      <ul className="clean-list">
         <li>Inbox</li>
         <li>Starred</li>
         <li>Sent Mail</li>

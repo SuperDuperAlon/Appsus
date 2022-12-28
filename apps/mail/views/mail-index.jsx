@@ -40,8 +40,6 @@ export function MailIndex() {
   if (!emails) return <h1>Loading</h1>;
   return (
     <section className="mail-index">
-      <h1>mail app</h1>
-      <SurveyApp />
       <MailSearchBar onSetFilter={onSetFilter} />
       <MailCompose />
       <MailNav />

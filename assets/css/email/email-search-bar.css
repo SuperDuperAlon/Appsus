@@ -1,4 +1,10 @@
-.mail-search-bar {
+.mail-search {
     width: 100%;
-    background-color: aqua;
+    background-color: #f6f8fc;
+}
+
+.mail-search input {
+    background-color: #eaf1fb;
+    width: 60%;
+    padding: .6rem;
 }
