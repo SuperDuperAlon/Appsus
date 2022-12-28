@@ -11,15 +11,19 @@ import { asyncStorageService } from "../../../services/async-storage.service.js"
 
 export function MailIndex() {
   const [emails, setEmails] = useState([]);
+      const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
 
   useEffect(() => {
     loadEmails();
-    console.log(emails);
-  }, []);
+  }, [filterBy]);
 
   function loadEmails() {
-    mailService.query().then((emails) => setEmails(emails));
+    mailService.query(filterBy).then((emails) => setEmails(emails));
   }
+
+  function onSetFilter(filterByFromFilter) {
+    setFilterBy(filterByFromFilter)
+}
 
   function onAddEmail() {
     console.log("This is a start of a form");
@@ -34,12 +38,11 @@ export function MailIndex() {
   }
 
   if (!emails) return <h1>Loading</h1>;
-  console.log(emails);
   return (
     <section className="mail-index">
       <h1>mail app</h1>
       <SurveyApp />
-      <MailSearchBar />
+      <MailSearchBar onSetFilter={onSetFilter} />
       <MailCompose />
       <MailNav />
       <MailList emails={emails} onRemoveEmail={onRemoveEmail} />

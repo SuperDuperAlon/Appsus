@@ -11,7 +11,6 @@ export function MailPreview({ email, onRemoveEmail }) {
     console.log("I was clicked");
   }
 
-  console.log(email);
   return (
     <Fragment>
       <tr
