@@ -22,7 +22,7 @@ function DynamicCmp(props) {
         case 'note-todos':
             return <NoteToDos {...props.props} />
         case 'note-video':
-            return <WelcomeBack {...props.props} />
+            return <NoteVideo {...props.props} />
     }
 }
 
@@ -41,18 +41,13 @@ function NoteToDos(props) {
     return <div>
         <ul>
             <h1>{props.info.label}</h1>
-            {props.info.todos.map(todo => <li class="chack-mark">{todo.txt}</li>)}
+            {props.info.todos.map((todo,idx) => <li key={idx} className="chack-mark"><input type="checkbox"/> <label>{todo.txt}</label></li>)}
         </ul>
     </div>
 }
+function NoteVideo({info}) {
+    return <div>
+        <iframe src={info.url} title="your video"></iframe>
+    </div>
+}
 
-
-//   <ul>
-//             <h1>{props.info.label}</h1>
-//             {props.info.todos.map(todo=> <li class="chack-mark">{todo.txt}</li>)}
-//           </ul>
-
-
-{/* <FormGroup>
-{props.info.todos.map(todo=><FormControlLabel control={<Checkbox defaultChecked />} label={todo.txt} />)}
-</FormGroup> */}
