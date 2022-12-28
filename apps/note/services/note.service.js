@@ -14,6 +14,22 @@ function getNotes() {
 }
 
 
+// function query() {
+//     return storageService.query(BOOK_KEY)
+//         .then(books => {
+//             if (filterBy.txt) {
+//                 const regex = new RegExp(filterBy.txt, 'i')
+//                 books = books.filter(book => regex.test(book.title))
+//             }
+//             if (filterBy.minPrice) {
+//                 books = books.filter(book => book.listPrice.amount >= filterBy.minPrice)
+//             }
+//             return books
+//         })
+// }
+
+
+
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
