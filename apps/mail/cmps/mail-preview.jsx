@@ -1,8 +1,25 @@
-export function MailPreview({ mail }) {
+const { useState, Fragment } = React;
+
+export function MailPreview({ email }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  console.log(email);
   return (
-    <article className="mail-preview">
-      <h2>Subject: {mail.subject}</h2>
-      <h3>Body: {mail.body}</h3>
-    </article>
+    <Fragment>
+      <tr
+        onClick={() => {
+          setIsExpanded(!isExpanded);
+        }}
+      >
+        <td>🐱‍🚀</td>
+        <td>Sender: {email.to}</td>
+        <td>Subject: {email.subject} - {email.body}</td>
+        <td>Time</td>
+      </tr>
+      <tr hidden={!isExpanded}>
+        <td colSpan="4">
+          <h3>Body: {email.body}</h3>
+        </td>
+      </tr>
+    </Fragment>
   );
 }
