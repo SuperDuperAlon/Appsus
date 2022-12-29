@@ -2,40 +2,54 @@ import { utilService } from "../../../services/util.service.js";
 import { storageService } from "../../../services/storage.service.js";
 import { asyncStorageService } from "../../../services/async-storage.service.js";
 
-const EMAIL_KEY = "emailDB";
-_createEmails();
-// Email Service Demo Data
+const MAIL_KEY = "mailDB";
+_createMails();
+// mail Service Demo Data
 
 export const mailService = {
   query,
   remove,
   getDefaultFilter,
+  getTemplateMail,
   //   get,
-  //   post,
+  post,
   //   put,
 };
 
-function query(filterBy = getDefaultFilter()) {
-  return asyncStorageService.query(EMAIL_KEY).then((emails) => {
+function query(filterBy = getDefaultFilter(), ) {
+  return asyncStorageService.query(MAIL_KEY).then((mails) => {
     const regex = new RegExp(filterBy.from, "i");
-    emails = emails.filter((email) => regex.test(email.from));
-    return emails;
+    mails = mails.filter((mail) => regex.test(mail.from));
+    return mails;
   });
 }
 
-function remove(emailId) {
-  console.log(emailId);
-  return asyncStorageService.remove(EMAIL_KEY, emailId);
+function remove(mailId) {
+  console.log(mailId);
+  return asyncStorageService.remove(MAIL_KEY, mailId);
+}
+
+function post(mail) {
+  mail = { ...mail };
+  mail.isRead = false;
+  mail.sentAt = 1551133930594;
+  mail.from = "user@appsus.com";
+  mail.removedAt = null;
+  return asyncStorageService.post(MAIL_KEY, mail);
 }
 
 function getDefaultFilter() {
   return { from: "" };
 }
 
-function _createEmails() {
-  let emails = storageService.loadFromStorage(EMAIL_KEY);
-  if (!emails || !emails.length) {
-    emails = [
+function getTemplateMail(to = "", subject = "", body = "") {
+  return { to, subject, body };
+}
+
+function _createMails() {
+  let mails = storageService.loadFromStorage(MAIL_KEY);
+  if (!mails || !mails.length) {
+    mails = [
       {
         id: utilService.makeId(),
         subject: "Miss you!",
@@ -49,7 +63,7 @@ function _createEmails() {
       {
         id: utilService.makeId(),
         subject: "Hello!",
-        body: "This is the second email",
+        body: "This is the second mail",
         isRead: false,
         sentAt: 1551133930594,
         removedAt: null,
@@ -59,15 +73,53 @@ function _createEmails() {
       {
         id: utilService.makeId(),
         subject: "Miss you!",
-        body: "This is the third email",
+        body: "This is the third mail",
         isRead: true,
         sentAt: 1551133930594,
         removedAt: null,
         from: "jojo@rabbit.com",
         to: "user@appsus.com",
       },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: "baba@rabbsdsdsdsit.com",
+        to: "user@appsus.com",
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: "njdksg@rajdsft.com",
+        to: "user@appsus.com",
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: "dfgsd@dfdfdt.com",
+        to: "user@appsus.com",
+      },
     ];
 
-    storageService.saveToStorage(EMAIL_KEY, emails);
+    storageService.saveToStorage(MAIL_KEY, mails);
   }
 }
+
+// const criteria = {
+//  status: {inbox, sent, trash, draft},
+//  txt: 'puki', // no need to support complex text search
+//  isRead: true, // (optional property, if missing: show all)
+//  isStarred: true, // (optional property, if missing: show all)
+//  lables: ['important', 'romantic'] // has any of the labels
+// }

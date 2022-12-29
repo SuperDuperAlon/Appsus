@@ -4,46 +4,56 @@ import { MailNav } from "../cmps/mail-nav.jsx";
 import { MailList } from "../cmps/mail-list.jsx";
 import { MailSearchBar } from "../cmps/mail-search.jsx";
 import { MailCompose } from "../cmps/mail-compose.jsx";
-import { SurveyApp } from "../cmps/mail-survey.jsx";
+import { MailAdd } from "../cmps/mail-add.jsx";
 
 import { mailService } from "../services/mail.service.js";
 import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 export function MailIndex() {
-  const [emails, setEmails] = useState([]);
+  const [mails, setMails] = useState([]);
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter());
 
   useEffect(() => {
-    loadEmails();
+    loadMails();
   }, [filterBy]);
 
-  function loadEmails() {
-    mailService.query(filterBy).then((emails) => setEmails(emails));
+  function loadMails() {
+    mailService.query(filterBy).then((mails) => setMails(mails));
   }
 
   function onSetFilter(filterByFromFilter) {
     setFilterBy(filterByFromFilter);
   }
 
-  function onAddEmail() {
-    console.log("This is a start of a form");
-  }
+function openComposeBtnSection() {
+  console.log('section opened');
+}
 
-  function onRemoveEmail(emailId, ev) {
+function onSendMail(ev, mailToAdd) {
+  ev.preventDefault()
+  mailService.post(mailToAdd).then((mail) => {
+    console.log('new mail', mail);
+    setMails(mails)
+    loadMails()
+  })
+}
+
+  function onRemoveMail(mailId, ev) {
     ev.stopPropagation()
-    mailService.remove(emailId).then(() => {
-      const updatedEmails = emails.filter((email) => email.id !== emailId);
-      setEmails(updatedEmails);
+    mailService.remove(mailId).then(() => {
+      const updatedeMails = mails.filter((mail) => mail.id !== mailId);
+      setMails(updatedeMails);
     });
   }
 
-  if (!emails) return <h1>Loading</h1>;
+  if (!mails) return <h1>Loading</h1>;
   return (
     <section className="mail-index">
       <MailSearchBar onSetFilter={onSetFilter} />
-      <MailCompose />
-      <MailNav />
-      <MailList emails={emails} onRemoveEmail={onRemoveEmail} />
+      <MailCompose openComposeBtnSection={openComposeBtnSection}/>
+      <MailNav loadMails={loadMails}/>
+      <MailList mails={mails} onRemoveMail={onRemoveMail} />
+      <MailAdd onSendMail={onSendMail}/>
     </section>
   );
 }
