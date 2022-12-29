@@ -11,7 +11,7 @@ import { asyncStorageService } from "../../../services/async-storage.service.js"
 
 export function MailIndex() {
   const [emails, setEmails] = useState([]);
-      const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+  const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter());
 
   useEffect(() => {
     loadEmails();
@@ -22,15 +22,15 @@ export function MailIndex() {
   }
 
   function onSetFilter(filterByFromFilter) {
-    setFilterBy(filterByFromFilter)
-}
+    setFilterBy(filterByFromFilter);
+  }
 
   function onAddEmail() {
     console.log("This is a start of a form");
   }
 
-  function onRemoveEmail(emailId) {
-    console.log(emailId);
+  function onRemoveEmail(emailId, ev) {
+    ev.stopPropagation()
     mailService.remove(emailId).then(() => {
       const updatedEmails = emails.filter((email) => email.id !== emailId);
       setEmails(updatedEmails);

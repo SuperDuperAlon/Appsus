@@ -37,7 +37,7 @@ function _createEmails() {
   if (!emails || !emails.length) {
     emails = [
       {
-        id: "e101",
+        id: utilService.makeId(),
         subject: "Miss you!",
         body: "Would love to catch up sometimes",
         isRead: false,
@@ -47,7 +47,7 @@ function _createEmails() {
         to: "user@appsus.com",
       },
       {
-        id: "e102",
+        id: utilService.makeId(),
         subject: "Hello!",
         body: "This is the second email",
         isRead: false,
@@ -57,7 +57,7 @@ function _createEmails() {
         to: "user@appsus.com",
       },
       {
-        id: "e103",
+        id: utilService.makeId(),
         subject: "Miss you!",
         body: "This is the third email",
         isRead: true,
