@@ -69,6 +69,11 @@ export function MailIndex() {
     return alphaSort;
   }
 
+  function changeStatus(value) {
+    let filter = { ...filterBy, status: value };
+    setFilterBy(filter);
+  }
+
   function countUnreadEmails() {
     mailService.query().then((mails) => mails.filter((mail) => !mail.isRead));
     return console.log(mails.length);
@@ -83,7 +88,7 @@ export function MailIndex() {
         sortByAlphabet={sortByAlphabet}
       />
       <MailCompose openComposeBtnSection={openComposeBtnSection} />
-      <MailNav loadMails={loadMails} />
+      <MailNav changeStatus={changeStatus} />
       <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <MailAdd onSendMail={onSendMail} />
     </section>

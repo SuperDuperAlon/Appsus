@@ -27,7 +27,7 @@ export function MailPreview({ mail, onRemoveMail }) {
           <button onClick={(ev) => onRemoveMail(mail.id, ev)}>🗑</button>
         </td>
         <td>✉</td>
-        <td>{mail.sentAt}</td>
+        <td>{mail.semtAt}</td>
       </tr>
       <tr hidden={!isExpanded}>
         <td colSpan="6">

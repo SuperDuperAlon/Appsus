@@ -71,7 +71,7 @@ function _createMails() {
         body: "Would love to catch up sometimes",
         isRead: false,
         sentAt: 1651133930594,
-        removedAt: null,
+        removedAt: true,
         from: "momo@momo.com",
         to: USER_EMAIL,
       },

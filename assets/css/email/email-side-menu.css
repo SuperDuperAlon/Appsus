@@ -3,3 +3,8 @@
     display: flex;
     width: 100%;
 }
+
+.main-nav ul {
+    display: flex;
+    flex-direction: column;
+}
