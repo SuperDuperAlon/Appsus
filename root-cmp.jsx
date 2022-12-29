@@ -6,6 +6,10 @@ import { About } from "./views/about.jsx";
 import { Home } from "./views/home.jsx";
 import { MailIndex } from "./apps/mail/views/mail-index.jsx";
 import { NoteIndex } from "./apps/note/views/note-index.jsx";
+import { MailNavSent } from "./apps/mail/cmps/mail-nav/mail-nav-sent.jsx";
+import { MailNavTrash } from "./apps/mail/cmps/mail-nav/mail-nav-trash.jsx";
+import { MailNavUnread } from "./apps/mail/cmps/mail-nav/mail-nav-unread.jsx";
+
 
 export function App() {
   return (
@@ -18,10 +22,10 @@ export function App() {
 
           {/* Mail Routes */}
           <Route path="/mail" element={<MailIndex />} />
-            {/* <Route path="/mail/sent" element={<Sent />} />
-             <Route path="/mail/starred" element={<Starred />} />
-            <Route path="/mail/trash" element={<Trash />} /> */}
-          
+          <Route path="/mail/sent" element={<MailNavSent />} />
+          <Route path="/mail/unread" element={<MailNavUnread />} />
+          <Route path="/mail/trash" element={<MailNavTrash />} />
+
           {/* Note Routes */}
           <Route path="/note" element={<NoteIndex />} />
         </Routes>

@@ -10,15 +10,15 @@ import { mailService } from "../services/mail.service.js";
 import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 export function MailIndex() {
-  const [emails, setEmails] = useState([]);
+  const [mails, setMails] = useState([]);
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter());
 
   useEffect(() => {
-    loadEmails();
+    loadMails();
   }, [filterBy]);
 
-  function loadEmails() {
-    mailService.query(filterBy).then((emails) => setEmails(emails));
+  function loadMails() {
+    mailService.query(filterBy).then((mails) => setMails(mails));
   }
 
   function onSetFilter(filterByFromFilter) {
@@ -33,26 +33,26 @@ function onSendMail(ev, mailToAdd) {
   ev.preventDefault()
   mailService.post(mailToAdd).then((mail) => {
     console.log('new mail', mail);
-    setEmails(emails)
-    loadEmails()
+    setMails(mails)
+    loadMails()
   })
 }
 
-  function onRemoveEmail(emailId, ev) {
+  function onRemoveMail(mailId, ev) {
     ev.stopPropagation()
-    mailService.remove(emailId).then(() => {
-      const updatedEmails = emails.filter((email) => email.id !== emailId);
-      setEmails(updatedEmails);
+    mailService.remove(mailId).then(() => {
+      const updatedeMails = mails.filter((mail) => mail.id !== mailId);
+      setMails(updatedeMails);
     });
   }
 
-  if (!emails) return <h1>Loading</h1>;
+  if (!mails) return <h1>Loading</h1>;
   return (
     <section className="mail-index">
       <MailSearchBar onSetFilter={onSetFilter} />
       <MailCompose openComposeBtnSection={openComposeBtnSection}/>
-      <MailNav loadEmails={loadEmails}/>
-      <MailList emails={emails} onRemoveEmail={onRemoveEmail} />
+      <MailNav loadMails={loadMails}/>
+      <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <MailAdd onSendMail={onSendMail}/>
     </section>
   );
