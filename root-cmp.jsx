@@ -18,9 +18,9 @@ export function App() {
 
           {/* Mail Routes */}
           <Route path="/mail" element={<MailIndex />} />
-            <Route path="/mail/sent" element={<Sent />} />
+            {/* <Route path="/mail/sent" element={<Sent />} />
              <Route path="/mail/starred" element={<Starred />} />
-            <Route path="/mail/trash" element={<Trash />} />
+            <Route path="/mail/trash" element={<Trash />} /> */}
           
           {/* Note Routes */}
           <Route path="/note" element={<NoteIndex />} />
