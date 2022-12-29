@@ -7,7 +7,8 @@ export const noteService = {
     query,
     loadImageFromInput,
     save,
-    remove
+    remove,
+    getEmptyTodo
 }
 
 const NOTE_KEY = "noteDB"
@@ -56,8 +57,15 @@ function query() {
         })
 }
 
-function getEmptyNote(){
-    return {id: '' , type:'', isPinned: false, info: {}, style: {backgroundColor: "white"}, }
+function getEmptyNote(inputType){
+    if (inputType==='note-todos'){
+        return {id: '' , type:'', isPinned: false, info: {title:'',todos:[]}, style: {backgroundColor: "white"}}
+    }
+    return {id: '' , type:'', isPinned: false, info: {}, style: {backgroundColor: "white"}}
+}
+
+function getEmptyTodo(){
+    return {txt: '', doneAt:''}
 }
 
 function save(note) {

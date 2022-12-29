@@ -9,25 +9,51 @@ export function NoteAdd({onSaveNote}) {
     // let [isOpen, setIsOpen] = useState(false)
     let [img, setImg] = useState('')
     let [inputType, setInputType] = useState('note-txt')
+    let [newTodo, setNewTodo] = useState(noteService.getEmptyTodo(inputType))
+    let [todos, setTodos] = useState([])
     const navigate = useNavigate()
 
 
 
     function handleChange({ target }) {
-        let { value, name: field } = target
+        let { value, name: field ,type} = target
         newNote.type = inputType
+        if(type=== 'color'){
+            setNewNote((prevNote) => ( {...prevNote , style : {...prevNote.style , [field] : value }}))
+        }
         // newNote.info[field] = value
         // setNewNote(newNote)
         // const noteToUpdate = newNote
         setNewNote((prevNote) => ( {...prevNote , info : {...prevNote.info , [field] : value }}))
     }
 
-    function handelTodos(ev){
-        ev.target.addEventListener('keypress', ()=>{console.log(ev)})
+    function addTodo(ev){
+        // console.log(ev.key);  
+        if(ev.key === 'Enter'){
+            // setTodos(todos.push(newTodo))
+            setNewNote( newNote.info.todos.push(newTodo))
+            console.log(newNote)
+            // setNewTodo(newTodo=noteService.getEmptyTodo(inputType))
+            // console.log(newTodo)
+            // console.log(newTodo);
+            // console.log(newNote); 
+            // newNote.info.todos.push(newTodo)
+            // setNewNote(newNote)
+            // console.log(newNote)
+            //  newTodo = noteService.getEmptyTodo()
+        }
+        // ev.target.addEventListener('keypress', ()=>{console.log(ev)})
         // console.log(target.value)
         // ev.addEventListener('keypress', ()=>console.log('enter'))
         // let { value, name: field } = target
+    }
 
+    function handleTodoChange({target}){
+        let { value, name: field } = target
+        // newTodo.txt = target.value
+        // console.log(newTodo)
+        setNewTodo((prevTodo)=> ({...prevTodo , [field] : value  }))
+        console.log(newTodo)
 
     }
     
@@ -39,19 +65,19 @@ export function NoteAdd({onSaveNote}) {
     //     })
     // }
 
-    function onImgInput(ev) {
-        noteService.loadImageFromInput(ev, renderImg)
-    }
+    // function onImgInput(ev) {
+    //     noteService.loadImageFromInput(ev, renderImg)
+    // }
 
-    function renderImg(image) {
-        img = image
-        console.log(img);
-        setImg(img)
-    }
+    // function renderImg(image) {
+    //     img = image
+    //     console.log(img);
+    //     setImg(img)
+    // }
 
     return <section className="note-add" onSubmit={()=>onSaveNote(event,newNote)}>
         <form>
-             {inputType === 'note-img'  || inputType==='note-video' && <input type="txt"
+             {(inputType === 'note-img'  || inputType==='note-video') && <input type="txt"
              name="url"
              id="url"
              placeholder="Insert url link"
@@ -64,18 +90,23 @@ export function NoteAdd({onSaveNote}) {
                 value={newNote.info.title}
                 onChange={handleChange} />
             <label htmlFor="txt"></label>
-            {inputType === 'note-txt' && <input type="text"
+            {inputType === 'note-txt' && <textarea
                 name="txt"
                 id="txt"
                 placeholder="Write a note..."
                 value={newNote.info.txt}
                 onChange={handleChange} />}
-            {inputType === 'note-todos' && <textarea type="checkbox"
+            {inputType === 'note-todos' && <textarea onKeyDown={addTodo} type="checkbox"
                 name="txt"
                 id="txt"
                 placeholder="Write Todos..."
-                value={newNote.info.todos}
-                onChange={handelTodos} />}
+                value={newTodo.txt}
+                onChange={handleTodoChange} />}
+            {inputType === 'note-todos' && <button onClick={addTodo}>+</button>}
+            <input type="color" 
+                name="backgroundColor"
+                value={newNote.style.backgroundColor} 
+                onChange={handleChange}   />
             <button className="add-button">Add</button>
         </form>
 

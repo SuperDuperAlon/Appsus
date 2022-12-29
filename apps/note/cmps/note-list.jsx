@@ -1,11 +1,12 @@
 
 
-export function NoteList({ notes , onRemoveNote }) {
+export function NoteList({ notes , onRemoveNote , onOpenPreview}) {
 
     return <div >
         <ul className="note-list">
             {notes.map(note =>
-                <li key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} /><button onClick={()=>onRemoveNote(note.id)}>Delete</button></li>)}
+                <li onClick={()=>onOpenPreview(note.id)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
+                <div className="note-operators"><button>Color</button><button onClick={()=>onRemoveNote(note.id)}>Delete</button></div></li>)}
         </ul>
     </div>
 
@@ -40,7 +41,7 @@ function NoteImg(props) {
 function NoteToDos(props) {
     return <div>
         <ul>
-            <h1>{props.info.label}</h1>
+            <h1>{props.info.title}</h1>
             {props.info.todos.map((todo,idx) => <li key={idx} className="chack-mark"><input type="checkbox"/> <label>{todo.txt}</label></li>)}
         </ul>
     </div>
@@ -48,6 +49,6 @@ function NoteToDos(props) {
 function NoteVideo({info}) {
     return <div>
         {info.title && <h1>{info.title}</h1> }
-        <iframe src={info.url} title="your video"></iframe>
+        <div className="video-container"><iframe src={info.url} title="your video" width="100%"></iframe></div>
     </div>
 }
