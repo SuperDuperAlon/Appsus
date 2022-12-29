@@ -1,11 +1,11 @@
 
 
-export function NoteList({ notes }) {
+export function NoteList({ notes , onRemoveNote }) {
 
     return <div >
         <ul className="note-list">
             {notes.map(note =>
-                <li key={note.id} className="note"><DynamicCmp props={note} /></li>)}
+                <li key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} /><button onClick={()=>onRemoveNote(note.id)}>Delete</button></li>)}
         </ul>
     </div>
 
@@ -13,7 +13,6 @@ export function NoteList({ notes }) {
 
 
 function DynamicCmp(props) {
-    console.log(props.props.type);
     switch (props.props.type) {
         case 'note-txt':
             return <NoteTxt {...props.props} />
@@ -48,6 +47,7 @@ function NoteToDos(props) {
 }
 function NoteVideo({info}) {
     return <div>
+        {info.title && <h1>{info.title}</h1> }
         <iframe src={info.url} title="your video"></iframe>
     </div>
 }

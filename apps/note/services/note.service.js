@@ -6,7 +6,8 @@ export const noteService = {
     getEmptyNote,
     query,
     loadImageFromInput,
-    save
+    save,
+    remove
 }
 
 const NOTE_KEY = "noteDB"
@@ -67,6 +68,10 @@ function save(note) {
     }
 }
 
+function remove(noteId) {
+    return asyncStorageService.remove(NOTE_KEY, noteId)
+}
+
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
@@ -91,7 +96,7 @@ function _createNotes() {
                     title: "Feed the dog"
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: "var(--note1)"
                 }
             },
             {
@@ -99,14 +104,14 @@ function _createNotes() {
                 type: "note-todos",
                 isPinned: false,
                 info: {
-                    label: "Get my stuff together",
+                    title: "Get my stuff together",
                     todos: [
                         { txt: "Driving liscence", doneAt: null },
                         { txt: "Coding power", doneAt: 187111111 }
                     ]
                 },
                 style: {
-                    backgroundColor: "--note2"
+                    backgroundColor: "var(--note2)"
                 }
             },
             {
@@ -117,7 +122,7 @@ function _createNotes() {
                     url: "https://www.youtube.com/embed/GTCd0hmjHBs",
                 },
                 style: {
-                    backgroundColor: "--note3"
+                    backgroundColor: "var(--note3)"
                 }    
 
             }

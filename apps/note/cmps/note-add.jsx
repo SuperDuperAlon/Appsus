@@ -1,13 +1,16 @@
 const { useState, useEffect } = React
+const { useNavigate} = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
 
-export function NoteAdd() {
+export function NoteAdd({onSaveNote}) {
 
     const [newNote, setNewNote] = useState(noteService.getEmptyNote())
     // let [isOpen, setIsOpen] = useState(false)
     let [img, setImg] = useState('')
     let [inputType, setInputType] = useState('note-txt')
+    const navigate = useNavigate()
+
 
 
     function handleChange({ target }) {
@@ -15,17 +18,17 @@ export function NoteAdd() {
         newNote.type = inputType
         // newNote.info[field] = value
         // setNewNote(newNote)
-        setNewNote((prevNote) => ( {...prevNote, [field] : value }))
+        // const noteToUpdate = newNote
+        setNewNote((prevNote) => ( {...prevNote , info : {...prevNote.info , [field] : value }}))
     }
-
-    function onSaveNoate(ev) {
-        ev.preventDefault()
-        noteService.save(newNote).then((note) => {
-            console.log('book saved', note);
-            // showSuccessMsg('Car saved!')
-            // navigate('/book')
-        })
-    }
+    
+    // function onSaveNoate(ev) {
+    //     ev.preventDefault()
+    //     noteService.save(newNote).then((note) => {
+    //         console.log('Note saved', note)
+    //         navigate('/note') 
+    //     })
+    // }
 
     function onImgInput(ev) {
         noteService.loadImageFromInput(ev, renderImg)
@@ -37,21 +40,33 @@ export function NoteAdd() {
         setImg(img)
     }
 
-    return <section className="note-add" onSubmit={onSaveNoate}>
+    return <section className="note-add" onSubmit={()=>onSaveNote(event,newNote)}>
         <form>
-            <input type="text"
-                name="txt"
+             {inputType === 'note-img'  || inputType==='note-video' && <input type="txt"
+             name="url"
+             id="url"
+             placeholder="Insert url link"
+             value={newNote.info.url}
+             onChange={handleChange}/>}
+             <input type="text"
+                name="title"
                 id="title"
                 placeholder="Title"
-                value={newNote.info.txt}
+                value={newNote.info.title}
                 onChange={handleChange} />
             <label htmlFor="txt"></label>
-            <input type="text"
+            {inputType === 'note-txt' && <input type="text"
                 name="txt"
                 id="txt"
                 placeholder="Write a note..."
                 value={newNote.info.txt}
-                onChange={handleChange} />
+                onChange={handleChange} />}
+            {inputType === 'note-todos' && <input type="checkbox"
+                name="txt"
+                id="txt"
+                placeholder="Write a note..."
+                value={newNote.info.todos}
+                onChange={handleChange} />}
             <button className="add-button">Add</button>
         </form>
 
