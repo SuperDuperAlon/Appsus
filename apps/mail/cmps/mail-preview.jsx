@@ -24,7 +24,7 @@ export function MailPreview({ email, onRemoveEmail }) {
           <span className="email-title-bold">{email.subject}</span> - {email.body}
         </td>
         <td>
-          <button onClick={() => onRemoveEmail(email.id)}>🗑</button>{" "}
+          <button onClick={(ev) => onRemoveEmail(email.id, ev)}>🗑</button>
         </td>
         <td>✉</td>
         <td>Time</td>
