@@ -21,14 +21,9 @@ export function MailIndex() {
     mailService.query(filterBy).then((mails) => setMails(mails));
   }
 
-  function onSetFilter(filterByFromFilter) {
-    setFilterBy(filterByFromFilter);
-  }
-
   function openComposeBtnSection() {
     console.log("section opened");
   }
-  console.log(mails);
 
   function onSendMail(ev, mailToAdd) {
     ev.preventDefault();
@@ -69,8 +64,17 @@ export function MailIndex() {
     return alphaSort;
   }
 
+  function filterByText(value) {
+    console.log(filterBy);
+    let filter = { ...filterBy, from: value };
+    console.log(filter);
+    setFilterBy(filter);
+  }
+
   function changeStatus(value) {
+    console.log(value);
     let filter = { ...filterBy, status: value };
+    console.log(filter);
     setFilterBy(filter);
   }
 
@@ -83,7 +87,7 @@ export function MailIndex() {
   return (
     <section className="mail-index">
       <MailSearchBar
-        onSetFilter={onSetFilter}
+        filterByText={filterByText}
         sorBytNumbers={sortByNumbers}
         sortByAlphabet={sortByAlphabet}
       />

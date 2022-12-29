@@ -27,14 +27,19 @@ function query(filterBy = getDefaultFilter()) {
       switch (filterBy.status) {
         case "unread":
           mails = mails.filter((mail) => !mail.isRead);
+          break;
         case "trash":
           mails = mails.filter((mail) => mail.removedAt);
-        case "sent":
-          mails = mails.filter((mail) => mail.from === USER_EMAIL);
+          break;
         case "inbox":
           mails = mails.filter((mail) => mail.to === USER_EMAIL);
+          break;
+        case "sent":
+          mails = mails.filter((mail) => mail.from === USER_EMAIL);
+          break;
       }
     }
+    console.log(filterBy.status);
     return mails;
   });
 }
