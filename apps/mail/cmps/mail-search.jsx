@@ -2,7 +2,7 @@ const { useState, useEffect, useRef } = React;
 
 import { mailService } from "../../mail/services/mail.service.js";
 
-export function MailSearchBar({ onSetFilter }) {
+export function MailSearchBar({ onSetFilter, sortByNumbers, sortByAlphabet }) {
   const [filterByToEdit, setFilterByToEdit] = useState(
     mailService.getDefaultFilter()
   );
@@ -41,6 +41,8 @@ export function MailSearchBar({ onSetFilter }) {
           ref={elInputRef}
         />
       </form>
+      <button onClick={sortByNumbers}>#</button>
+      <button onClick={sortByAlphabet}>Aa</button>
     </section>
   );
 }

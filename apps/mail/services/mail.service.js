@@ -3,6 +3,7 @@ import { storageService } from "../../../services/storage.service.js";
 import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 const MAIL_KEY = "mailDB";
+const USER_EMAIL = "user@appsus.com";
 _createMails();
 // mail Service Demo Data
 
@@ -16,10 +17,24 @@ export const mailService = {
   //   put,
 };
 
-function query(filterBy = getDefaultFilter(), ) {
+function query(filterBy = getDefaultFilter()) {
   return asyncStorageService.query(MAIL_KEY).then((mails) => {
-    const regex = new RegExp(filterBy.from, "i");
-    mails = mails.filter((mail) => regex.test(mail.from));
+    if (filterBy.from) {
+      const regex = new RegExp(filterBy.from, "i");
+      mails = mails.filter((mail) => regex.test(mail.from));
+    }
+    if (filterBy.status) {
+      switch (filterBy.status) {
+        case "unread":
+          mails = mails.filter((mail) => !mail.isRead);
+        case "trash":
+          mails = mails.filter((mail) => mail.removedAt);
+        case "sent":
+          mails = mails.filter((mail) => mail.from === USER_EMAIL);
+        case "inbox":
+          mails = mails.filter((mail) => mail.to === USER_EMAIL);
+      }
+    }
     return mails;
   });
 }
@@ -33,13 +48,13 @@ function post(mail) {
   mail = { ...mail };
   mail.isRead = false;
   mail.sentAt = 1551133930594;
-  mail.from = "user@appsus.com";
+  mail.from = USER_EMAIL;
   mail.removedAt = null;
   return asyncStorageService.post(MAIL_KEY, mail);
 }
 
 function getDefaultFilter() {
-  return { from: "" };
+  return { from: "", status: "inbox" };
 }
 
 function getTemplateMail(to = "", subject = "", body = "") {
@@ -55,40 +70,40 @@ function _createMails() {
         subject: "Miss you!",
         body: "Would love to catch up sometimes",
         isRead: false,
-        sentAt: 1551133930594,
-        removedAt: null,
+        sentAt: 1651133930594,
+        removedAt: true,
         from: "momo@momo.com",
-        to: "user@appsus.com",
+        to: USER_EMAIL,
       },
       {
         id: utilService.makeId(),
         subject: "Hello!",
         body: "This is the second mail",
         isRead: false,
-        sentAt: 1551133930594,
+        sentAt: 1551133933594,
         removedAt: null,
         from: "popo@popo.com",
-        to: "user@appsus.com",
+        to: USER_EMAIL,
       },
       {
         id: utilService.makeId(),
         subject: "Miss you!",
         body: "This is the third mail",
         isRead: true,
-        sentAt: 1551133930594,
+        sentAt: 1451133910594,
         removedAt: null,
         from: "jojo@rabbit.com",
-        to: "user@appsus.com",
+        to: USER_EMAIL,
       },
       {
         id: utilService.makeId(),
         subject: "Miss you!",
         body: "This is the third mail",
         isRead: true,
-        sentAt: 1551133930594,
+        sentAt: 1351133970594,
         removedAt: null,
         from: "baba@rabbsdsdsdsit.com",
-        to: "user@appsus.com",
+        to: USER_EMAIL,
       },
       {
         id: utilService.makeId(),
@@ -98,7 +113,7 @@ function _createMails() {
         sentAt: 1551133930594,
         removedAt: null,
         from: "njdksg@rajdsft.com",
-        to: "user@appsus.com",
+        to: USER_EMAIL,
       },
       {
         id: utilService.makeId(),
@@ -108,7 +123,7 @@ function _createMails() {
         sentAt: 1551133930594,
         removedAt: null,
         from: "dfgsd@dfdfdt.com",
-        to: "user@appsus.com",
+        to: USER_EMAIL,
       },
     ];
 
@@ -116,10 +131,8 @@ function _createMails() {
   }
 }
 
-// const criteria = {
-//  status: {inbox, sent, trash, draft},
-//  txt: 'puki', // no need to support complex text search
-//  isRead: true, // (optional property, if missing: show all)
-//  isStarred: true, // (optional property, if missing: show all)
-//  lables: ['important', 'romantic'] // has any of the labels
+// var criteria = {
+//  inbox, sent, trash, draft
 // }
+
+// console.log(criteria);
