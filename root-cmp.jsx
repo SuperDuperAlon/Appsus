@@ -22,9 +22,9 @@ export function App() {
 
           {/* Mail Routes */}
           <Route path="/mail" element={<MailIndex />} />
-          <Route path="/mail/sent" element={<MailNavSent />} />
-          <Route path="/mail/unread" element={<MailNavUnread />} />
-          <Route path="/mail/trash" element={<MailNavTrash />} />
+            <Route path="/mail/sent" element={<MailIndex />} />
+            <Route path="/mail/unread" element={<MailIndex />} />
+            <Route path="/mail/trash" element={<MailIndex />} />
 
           {/* Note Routes */}
           <Route path="/note" element={<NoteIndex />} />
