@@ -5,7 +5,7 @@ export function NoteList({ notes , onRemoveNote , onOpenPreview}) {
     return <div >
         <ul className="note-list">
             {notes.map(note =>
-                <li onClick={()=>onOpenPreview(note.id)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
+                <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
                 <div className="note-operators"><button>Color</button><button onClick={()=>onRemoveNote(note.id)}>Delete</button></div></li>)}
         </ul>
     </div>

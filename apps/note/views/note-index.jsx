@@ -1,6 +1,6 @@
 
 const { useState, useEffect } = React
-const { useNavigate} = ReactRouterDOM
+const { useNavigate, Link, Outlet} = ReactRouterDOM
 
 import { NoteAdd } from "../cmps/note-add.jsx";
 import { NoteFilter } from "../cmps/note-filter.jsx";
@@ -12,23 +12,26 @@ import {noteService} from "../services/note.service.js"
 export function NoteIndex() {
 
   const navigate = useNavigate()
-  let [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState([])
+  const [selectedNote, setSelectedNote] = useState(null)
+  const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
   
   useEffect(()=>{
     loadNotes()
-  },[])
+  },[filterBy])
 
   
   function loadNotes(){
-    noteService.query()
+    noteService.query(filterBy)
     .then((notes)=> setNotes(notes))
   }
   
-  function onSaveNote(ev, newNote) {
+  function onSaveNote(ev, newNote, inputType ,setNewNote) {
     ev.preventDefault()
     noteService.save(newNote).then((note) => {
         console.log('Note saved', note)
         setNotes(notes)
+        setNewNote(noteService.getEmptyNote(inputType))
         loadNotes()
     })
 }
@@ -41,18 +44,22 @@ export function NoteIndex() {
     })
 
   }
+  function onSetFilter(filterBy) {
+    setFilterBy(filterBy)
+}
 
-  function onOpenPreview(noteId){
-    return noteId
+  function onOpenPreview(note){
+    setSelectedNote(note)
+    navigate(`/note/${note.id}`)
   }
 
   return (
     <div>
-      {/* <NoteFilter /> */}
+      <NoteFilter onSetFilter={onSetFilter}/>
       <NoteAdd onSaveNote={onSaveNote}/>
       <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview}/>
-      {/* <NotePreview noteId={route}/> */}
-
+      {/* {selectedNote && <Link to=`/car/{selectedNote}`></Link>} */}
+      <Outlet/>
       <div>note app</div>
     </div>
   )
