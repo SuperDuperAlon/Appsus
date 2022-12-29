@@ -1,6 +1,8 @@
 const { Route, Routes } = ReactRouterDOM;
 const Router = ReactRouterDOM.HashRouter;
 
+
+
 import { AppHeader } from "./cmps/app-header.jsx";
 import { About } from "./views/about.jsx";
 import { Home } from "./views/home.jsx";
@@ -9,10 +11,12 @@ import { NoteIndex } from "./apps/note/views/note-index.jsx";
 import { MailNavSent } from "./apps/mail/cmps/mail-nav/mail-nav-sent.jsx";
 import { MailNavTrash } from "./apps/mail/cmps/mail-nav/mail-nav-trash.jsx";
 import { MailNavUnread } from "./apps/mail/cmps/mail-nav/mail-nav-unread.jsx";
+import { NotePreview } from "./apps/note/cmps/note-preview.jsx";
 
 
 
 export function App() {
+  
   return (
     <Router>
       <section className="app">
@@ -28,7 +32,9 @@ export function App() {
             <Route path="/mail/trash" element={<MailIndex />} />
 
           {/* Note Routes */}
-          <Route path="/note" element={<NoteIndex />} />
+          <Route path="/note" element={<NoteIndex />} >
+              <Route path="/note/:noteID" element={<NotePreview/>}/>
+          </Route>
         </Routes>
       </section>
     </Router>

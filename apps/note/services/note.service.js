@@ -63,7 +63,7 @@ function getEmptyNote(inputType){
     if (inputType==='note-todos'){
         return {id: '' , type:'', isPinned: false, info: {title:'',todos:[]}, style: {backgroundColor: "white"}}
     }
-    return {id: '' , type:'', isPinned: false, info: {}, style: {backgroundColor: "white"}}
+    return {id: '' , type:'', isPinned: false, info: {}, style: {backgroundColor: "#ffffff"}}
 }
 
 function getEmptyTodo(){

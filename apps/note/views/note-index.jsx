@@ -1,6 +1,6 @@
 
 const { useState, useEffect } = React
-const { useNavigate} = ReactRouterDOM
+const { useNavigate, Link, Outlet} = ReactRouterDOM
 
 import { NoteAdd } from "../cmps/note-add.jsx";
 import { NoteFilter } from "../cmps/note-filter.jsx";
@@ -26,11 +26,12 @@ export function NoteIndex() {
     .then((notes)=> setNotes(notes))
   }
   
-  function onSaveNote(ev, newNote) {
+  function onSaveNote(ev, newNote, inputType ,setNewNote) {
     ev.preventDefault()
     noteService.save(newNote).then((note) => {
         console.log('Note saved', note)
         setNotes(notes)
+        setNewNote(noteService.getEmptyNote(inputType))
         loadNotes()
     })
 }
@@ -49,7 +50,7 @@ export function NoteIndex() {
 
   function onOpenPreview(note){
     setSelectedNote(note)
-    return 
+    navigate(`/note/${note.id}`)
   }
 
   return (
@@ -57,8 +58,8 @@ export function NoteIndex() {
       <NoteFilter onSetFilter={onSetFilter}/>
       <NoteAdd onSaveNote={onSaveNote}/>
       <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview}/>
-      {selectedNote && <NotePreview note={selectedNote}/>}
-
+      {/* {selectedNote && <Link to=`/car/{selectedNote}`></Link>} */}
+      <Outlet/>
       <div>note app</div>
     </div>
   )
