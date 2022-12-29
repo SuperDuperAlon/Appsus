@@ -1,3 +1,43 @@
-export function NoteFilter() {
-    return <h1>This is the note filter cmp</h1>
+const { useState, useEffect, useRef } = React
+
+import {noteService} from "../services/note.service.js"
+
+export function NoteFilter({onSetFilter}) {
+
+    const [filterByToEdit, setFilterByToEdit] = useState(noteService.getDefaultFilter())
+    const elInputRef = useRef(null)
+
+    useEffect(() => {
+        elInputRef.current.focus()
+    }, [])
+
+    useEffect(() => {
+        onSetFilter(filterByToEdit)
+    }, [filterByToEdit])
+
+    function handleChange({ target }) {
+        let { value, name: field, type } = target
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+    }
+
+    function onSubmitFilter(ev) {
+        // update father cmp that filters change on submit
+        ev.preventDefault()
+        onSetFilter(filterByToEdit)
+    }
+    
+    
+    return <section className="filter">
+        <form onSubmit={onSubmitFilter}>
+            <input type="text"
+                id="txt"
+                name="txt"
+                placeholder="Search"
+                value={filterByToEdit.txt}
+                onChange={handleChange}
+                ref={elInputRef}
+            />
+            </form>
+
+    </section>
 }

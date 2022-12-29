@@ -8,7 +8,8 @@ export const noteService = {
     loadImageFromInput,
     save,
     remove,
-    getEmptyTodo
+    getEmptyTodo,
+    getDefaultFilter
 }
 
 const NOTE_KEY = "noteDB"
@@ -43,13 +44,14 @@ function loadImageFromInput(ev, onImageReady) {
 //     return img
 // }
 
-function query() {
+function query(filterBy) {
     return asyncStorageService.query(NOTE_KEY)
         .then(notes => {
-            // if (filterBy.txt) {
-            //     const regex = new RegExp(filterBy.txt, 'i')
-            //     books = books.filter(book => regex.test(book.title))
-            // }
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
+                notes = notes.filter(note =>regex.test(note.info.txt) || regex.test(note.info.title) )
+            }
+
             // if (filterBy.minPrice) {
             //     books = books.filter(book => book.listPrice.amount >= filterBy.minPrice)
             // }
@@ -78,6 +80,10 @@ function save(note) {
 
 function remove(noteId) {
     return asyncStorageService.remove(NOTE_KEY, noteId)
+}
+
+function getDefaultFilter(){
+    return {txt : ''}
 }
 
 function _createNotes() {

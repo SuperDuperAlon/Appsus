@@ -5,14 +5,18 @@ import { noteService } from "../services/note.service.js"
 
 export function NoteAdd({onSaveNote}) {
 
-    const [newNote, setNewNote] = useState(noteService.getEmptyNote())
+    
     // let [isOpen, setIsOpen] = useState(false)
-    let [img, setImg] = useState('')
+    const [img, setImg] = useState('')
     let [inputType, setInputType] = useState('note-txt')
-    let [newTodo, setNewTodo] = useState(noteService.getEmptyTodo(inputType))
+    const [newNote, setNewNote] = useState(noteService.getEmptyNote(inputType))
+    let [newTodo, setNewTodo] = useState(noteService.getEmptyTodo())
     let [todos, setTodos] = useState([])
     const navigate = useNavigate()
-
+        
+    useEffect(()=>{
+        setNewNote(noteService.getEmptyNote(inputType))
+    },[inputType])
 
 
     function handleChange({ target }) {
@@ -31,9 +35,9 @@ export function NoteAdd({onSaveNote}) {
         // console.log(ev.key);  
         if(ev.key === 'Enter'){
             // setTodos(todos.push(newTodo))
-            setNewNote( newNote.info.todos.push(newTodo))
+            setNewNote( (prevNote)=> ({...prevNote, info : {...prevNote.info, todos : [...prevNote.info.todos , newTodo]}}))
             console.log(newNote)
-            // setNewTodo(newTodo=noteService.getEmptyTodo(inputType))
+            setNewTodo(noteService.getEmptyTodo(inputType))
             // console.log(newTodo)
             // console.log(newTodo);
             // console.log(newNote); 

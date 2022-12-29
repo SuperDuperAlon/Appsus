@@ -12,15 +12,17 @@ import {noteService} from "../services/note.service.js"
 export function NoteIndex() {
 
   const navigate = useNavigate()
-  let [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState([])
+  const [selectedNote, setSelectedNote] = useState(null)
+  const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
   
   useEffect(()=>{
     loadNotes()
-  },[])
+  },[filterBy])
 
   
   function loadNotes(){
-    noteService.query()
+    noteService.query(filterBy)
     .then((notes)=> setNotes(notes))
   }
   
@@ -41,17 +43,21 @@ export function NoteIndex() {
     })
 
   }
+  function onSetFilter(filterBy) {
+    setFilterBy(filterBy)
+}
 
-  function onOpenPreview(noteId){
-    return noteId
+  function onOpenPreview(note){
+    setSelectedNote(note)
+    return 
   }
 
   return (
     <div>
-      {/* <NoteFilter /> */}
+      <NoteFilter onSetFilter={onSetFilter}/>
       <NoteAdd onSaveNote={onSaveNote}/>
       <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview}/>
-      {/* <NotePreview noteId={route}/> */}
+      {selectedNote && <NotePreview note={selectedNote}/>}
 
       <div>note app</div>
     </div>
