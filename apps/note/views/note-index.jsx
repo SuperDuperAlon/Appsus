@@ -5,6 +5,7 @@ const { useNavigate} = ReactRouterDOM
 import { NoteAdd } from "../cmps/note-add.jsx";
 import { NoteFilter } from "../cmps/note-filter.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
+import { NotePreview } from "../cmps/note-preview.jsx"
 import {noteService} from "../services/note.service.js"
 
 
@@ -41,11 +42,16 @@ export function NoteIndex() {
 
   }
 
+  function onOpenPreview(noteId){
+    return noteId
+  }
+
   return (
     <div>
       {/* <NoteFilter /> */}
       <NoteAdd onSaveNote={onSaveNote}/>
-      <NoteList notes={notes} onRemoveNote={onRemoveNote}/>
+      <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview}/>
+      {/* <NotePreview noteId={route}/> */}
 
       <div>note app</div>
     </div>
