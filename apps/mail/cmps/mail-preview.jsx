@@ -21,7 +21,7 @@ export function MailPreview({ email, onRemoveEmail }) {
         <td>🐱‍🚀</td>
         <td>{email.from}</td>
         <td>
-          {email.subject} - {email.body}
+          <span className="email-title-bold">{email.subject}</span> - {email.body}
         </td>
         <td>
           <button onClick={() => onRemoveEmail(email.id)}>🗑</button>{" "}
@@ -29,9 +29,9 @@ export function MailPreview({ email, onRemoveEmail }) {
         <td>✉</td>
         <td>Time</td>
       </tr>
-      <tr hidden={!isExpanded} bgcolor={"lightgrey"}>
+      <tr hidden={!isExpanded}>
         <td colSpan="6">
-          <h3>Body: {email.body}</h3>
+          <h3>{email.body}</h3>
         </td>
       </tr>
     </Fragment>
