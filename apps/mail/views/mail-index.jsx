@@ -4,7 +4,7 @@ import { MailNav } from "../cmps/mail-nav.jsx";
 import { MailList } from "../cmps/mail-list.jsx";
 import { MailSearchBar } from "../cmps/mail-search.jsx";
 import { MailCompose } from "../cmps/mail-compose.jsx";
-import { SurveyApp } from "../cmps/mail-survey.jsx";
+import { MailAdd } from "../cmps/mail-add.jsx";
 
 import { mailService } from "../services/mail.service.js";
 import { asyncStorageService } from "../../../services/async-storage.service.js";
@@ -25,9 +25,18 @@ export function MailIndex() {
     setFilterBy(filterByFromFilter);
   }
 
-  function onAddEmail() {
-    console.log("This is a start of a form");
-  }
+function openComposeBtnSection() {
+  console.log('section opened');
+}
+
+function onSendMail(ev, mailToAdd) {
+  ev.preventDefault()
+  mailService.post(mailToAdd).then((mail) => {
+    console.log('new mail', mail);
+    setEmails(emails)
+    loadEmails()
+  })
+}
 
   function onRemoveEmail(emailId, ev) {
     ev.stopPropagation()
@@ -41,9 +50,10 @@ export function MailIndex() {
   return (
     <section className="mail-index">
       <MailSearchBar onSetFilter={onSetFilter} />
-      <MailCompose />
-      <MailNav />
+      <MailCompose openComposeBtnSection={openComposeBtnSection}/>
+      <MailNav loadEmails={loadEmails}/>
       <MailList emails={emails} onRemoveEmail={onRemoveEmail} />
+      <MailAdd onSendMail={onSendMail}/>
     </section>
   );
 }

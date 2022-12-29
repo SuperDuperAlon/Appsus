@@ -10,8 +10,9 @@ export const mailService = {
   query,
   remove,
   getDefaultFilter,
+  getTemplateMail,
   //   get,
-  //   post,
+  post,
   //   put,
 };
 
@@ -28,8 +29,21 @@ function remove(emailId) {
   return asyncStorageService.remove(EMAIL_KEY, emailId);
 }
 
+function post(mail) {
+  mail = { ...mail };
+  mail.isRead = false;
+  mail.sentAt = 1551133930594;
+  mail.from = "user@appsus.com";
+  mail.removedAt = null;
+  return asyncStorageService.post(EMAIL_KEY, mail);
+}
+
 function getDefaultFilter() {
   return { from: "" };
+}
+
+function getTemplateMail(to = "", subject = "", body = "") {
+  return { to, subject, body };
 }
 
 function _createEmails() {
@@ -64,6 +78,36 @@ function _createEmails() {
         sentAt: 1551133930594,
         removedAt: null,
         from: "jojo@rabbit.com",
+        to: "user@appsus.com",
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third email",
+        isRead: true,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: "baba@rabbsdsdsdsit.com",
+        to: "user@appsus.com",
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third email",
+        isRead: true,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: "njdksg@rajdsft.com",
+        to: "user@appsus.com",
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third email",
+        isRead: true,
+        sentAt: 1551133930594,
+        removedAt: null,
+        from: "dfgsd@dfdfdt.com",
         to: "user@appsus.com",
       },
     ];
