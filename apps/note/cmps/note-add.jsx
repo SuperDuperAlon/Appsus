@@ -21,6 +21,15 @@ export function NoteAdd({onSaveNote}) {
         // const noteToUpdate = newNote
         setNewNote((prevNote) => ( {...prevNote , info : {...prevNote.info , [field] : value }}))
     }
+
+    function handelTodos(ev){
+        ev.target.addEventListener('keypress', ()=>{console.log(ev)})
+        // console.log(target.value)
+        // ev.addEventListener('keypress', ()=>console.log('enter'))
+        // let { value, name: field } = target
+
+
+    }
     
     // function onSaveNoate(ev) {
     //     ev.preventDefault()
@@ -61,12 +70,12 @@ export function NoteAdd({onSaveNote}) {
                 placeholder="Write a note..."
                 value={newNote.info.txt}
                 onChange={handleChange} />}
-            {inputType === 'note-todos' && <input type="checkbox"
+            {inputType === 'note-todos' && <textarea type="checkbox"
                 name="txt"
                 id="txt"
-                placeholder="Write a note..."
+                placeholder="Write Todos..."
                 value={newNote.info.todos}
-                onChange={handleChange} />}
+                onChange={handelTodos} />}
             <button className="add-button">Add</button>
         </form>
 
