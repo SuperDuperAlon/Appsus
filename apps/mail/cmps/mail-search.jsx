@@ -9,7 +9,7 @@ export function MailSearchBar({ filterByText, sortByNumbers, sortByAlphabet }) {
       <div className="mail-search-bar">
         <div className="mail-search-form">
           <a>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
           </a>
           <form>
             <label htmlFor="sender"></label>

@@ -33,3 +33,7 @@
 .bold {
     font-weight: bold;
 }
+
+.capitalize {
+    text-transform: capitalize;
+}

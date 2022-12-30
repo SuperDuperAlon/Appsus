@@ -2,24 +2,29 @@
     background-color: #f6f8fc;
     display: flex;
     height: 56px;
+    padding-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    height: 56px;
+    min-width: 96px;
 }
 
 .compose-btn {
     border-radius: 16px;
     color: #001d35;
     height: 56px;
-    padding-left: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    min-width: 96px;
     align-items: center;
     background-color: #c2e7ff;
     display: flex;
     font-weight: 500;
-    height: 56px;
     line-height: 2rem;
-    min-width: 96px;
     border: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.compose-btn > * {
+    padding: 0.5rem;
 }
 
 .compose-btn:hover {

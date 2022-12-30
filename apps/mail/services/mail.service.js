@@ -11,6 +11,7 @@ export const mailService = {
   remove,
   getDefaultFilter,
   getTemplateMail,
+  countUnreadEmails,
   //   get,
   post,
   //   put,
@@ -70,7 +71,7 @@ function get(mailId) {
 }
 
 function getDefaultFilter() {
-  return { from: "", status: "inbox" };
+  return { from: "", status: "inbox", readStatus: "" };
 }
 
 function getTemplateMail(to = "", subject = "", body = "") {
@@ -84,6 +85,16 @@ function getActualDate(date) {
   const paddedDay = utilService.padNum(day);
   const actualDate = `${month} ${paddedDay}`;
   return actualDate;
+}
+
+function countUnreadEmails() {
+  return asyncStorageService.query(MAIL_KEY).then((mails) => {
+    const filteredMails = mails.filter(
+      (mail) => !mail.isRead && mail.to === USER_EMAIL
+    );
+    console.log(filteredMails);
+    return filteredMails;
+  });
 }
 
 function _createMails() {

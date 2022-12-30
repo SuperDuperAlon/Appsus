@@ -75,10 +75,8 @@ export function MailIndex() {
     setFilterBy(filter);
   }
 
-  function countUnreadEmails() {
-    const temp = mails.filter((mail) => !mail.isRead);
-    console.log(temp.length);
-    return temp.length;
+  function getUnreadEmailsCount() {
+    mailService.countUnreadEmails().then((mails) => mails.length);
   }
 
   if (!mails) return <h1>Loading</h1>;
@@ -92,8 +90,8 @@ export function MailIndex() {
       <MailCompose openComposeBtnSection={openComposeBtnSection} />
       <MailNav
         changeStatus={changeStatus}
-        countUnreadEmails={countUnreadEmails}
         changeReadStatus={changeReadStatus}
+        getUnreadEmailsCount={getUnreadEmailsCount}
       />
       <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <MailAdd onSendMail={onSendMail} />
