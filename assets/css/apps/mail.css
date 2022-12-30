@@ -8,8 +8,10 @@
     grid-template-areas:
         "compose-btn search-bar"
         "mail-navbar  mail-list";
-    grid-template-rows: 50px 1fr;
-    grid-template-columns: 150px 1fr;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: 256px 1fr;
+    color: var(--gmail-black);
+    font-size: 14px;
 }
 
 .mail-compose-btn {
@@ -28,6 +30,5 @@
 
 /* Defines the email list */
 .mail-list {
-    background-color: yellow;
     grid-area: mail-list
 }

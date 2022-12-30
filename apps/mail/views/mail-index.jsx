@@ -39,11 +39,15 @@ export function MailIndex() {
   }
 
   function onRemoveMail(mailId, ev) {
-    ev.stopPropagation()
+    ev.stopPropagation();
     mailService.remove(mailId).then(() => {
       const updatedeMails = mails.filter((mail) => mail.id !== mailId);
       setMails(updatedeMails);
     });
+  }
+
+  function changeReadStatus(mailId, ev) {
+    ev.stopPropagation();
   }
 
   function sortByNumbers() {
@@ -77,10 +81,6 @@ export function MailIndex() {
     return temp.length;
   }
 
-  function changeReadStatus(mailId) {
-    console.log("this is the function");
-  }
-
   if (!mails) return <h1>Loading</h1>;
   return (
     <section className="mail-index">
@@ -93,12 +93,9 @@ export function MailIndex() {
       <MailNav
         changeStatus={changeStatus}
         countUnreadEmails={countUnreadEmails}
-      />
-      <MailList
-        mails={mails}
         changeReadStatus={changeReadStatus}
-        onRemoveMail={onRemoveMail}
       />
+      <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <MailAdd onSendMail={onSendMail} />
     </section>
   );
