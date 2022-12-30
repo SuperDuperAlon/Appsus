@@ -13,8 +13,10 @@ export function NoteIndex() {
 
   const navigate = useNavigate()
   const [notes, setNotes] = useState([])
+  const [isPreview, setIsPreview] = useState(false)
   const [selectedNote, setSelectedNote] = useState(null)
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+
   
   useEffect(()=>{
     loadNotes()
@@ -27,10 +29,13 @@ export function NoteIndex() {
   }
   
   function onSaveNote(ev, newNote, inputType ,setNewNote) {
+    setIsPreview(false)
     ev.preventDefault()
     noteService.save(newNote).then((note) => {
-        console.log('Note saved', note)
+        // console.log('Note saved', note)
         setNotes(notes)
+        console.log(notes);
+        // console.log(inputType)
         setNewNote(noteService.getEmptyNote(inputType))
         loadNotes()
     })
@@ -49,7 +54,8 @@ export function NoteIndex() {
 }
 
   function onOpenPreview(note){
-    setSelectedNote(note)
+    setIsPreview(true)
+    // setSelectedNote(note)
     navigate(`/note/${note.id}`)
   }
 
@@ -57,16 +63,19 @@ export function NoteIndex() {
     navigate('/note')
   }
 
+  // console.log(isPreview); 
   return (
     <div>
       <NoteFilter onSetFilter={onSetFilter}/>
       <NoteAdd onSaveNote={onSaveNote}/>
       <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview}/>
       {/* {selectedNote && <Link to=`/car/{selectedNote}`></Link>} */}
-      <Outlet/>
+      <Outlet />
     </div>
   )
 }
+
+
 
 
 

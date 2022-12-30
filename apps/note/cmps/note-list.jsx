@@ -4,11 +4,25 @@ import {DynamicCmp} from "../cmps/dynamic-cmp.jsx"
 export function NoteList({ notes , onRemoveNote , onOpenPreview}) {
 
     return <div className="note-list-container">
-        <ul className="note-list">
-            {notes.map(note =>
-                <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
-                <div className="note-operators"><button>Color</button><button onClick={(ev)=>onRemoveNote(ev, note.id)}>Delete</button></div></li>)}
-        </ul>
+            <ul className="note-list"> 
+            {notes.map(note =>{
+                if(note.isPinned){
+                    return <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
+                    <div className="note-operators"><button>Color</button><button onClick={(ev)=>onRemoveNote(ev, note.id)}>Delete</button></div></li>
+                }
+                })
+            }
+            </ul>
+
+            <ul className="note-list">
+                {notes.map(note =>{
+                    if(!note.isPinned){
+                    return <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
+                        <div className="note-operators"><button>Color</button><button onClick={(ev)=>onRemoveNote(ev, note.id)}>Delete</button></div></li>
+                        }
+                })
+            }
+            </ul>
     </div>
 
 }
