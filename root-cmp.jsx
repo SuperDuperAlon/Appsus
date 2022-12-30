@@ -8,9 +8,6 @@ import { About } from "./views/about.jsx";
 import { Home } from "./views/home.jsx";
 import { MailIndex } from "./apps/mail/views/mail-index.jsx";
 import { NoteIndex } from "./apps/note/views/note-index.jsx";
-import { MailNavSent } from "./apps/mail/cmps/mail-nav/mail-nav-sent.jsx";
-import { MailNavTrash } from "./apps/mail/cmps/mail-nav/mail-nav-trash.jsx";
-import { MailNavUnread } from "./apps/mail/cmps/mail-nav/mail-nav-unread.jsx";
 import { NotePreview } from "./apps/note/cmps/note-preview.jsx";
 
 
