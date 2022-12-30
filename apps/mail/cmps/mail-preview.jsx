@@ -3,13 +3,11 @@ const { useState, Fragment, useEffect } = React;
 import { asyncStorageServe } from "../../../services/async-storage.service.js";
 import { mailService } from "../services/mail.service.js";
 
-export function MailPreview({ mail, onRemoveMail }) {
+export function MailPreview({ mail, onRemoveMail, changeReadStatus }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  // const [carToEdit, setCarToEdit] = useState(null)
+  //   const navigate = useNavigate()
   const [isUnread, setIsRead] = useState("white");
-
-  function changeReadStatus() {
-    console.log("I was clicked");
-  }
 
   return (
     <Fragment>
@@ -18,16 +16,25 @@ export function MailPreview({ mail, onRemoveMail }) {
           setIsExpanded(!isExpanded);
         }}
       >
-        <td><i class="fa-regular fa-star"></i></td>
-        <td>{mail.from}</td>
-        <td>
-          <span className="mail-title-bold">{mail.subject}</span> - {mail.body}
+        <td className="mail-list-star">
+          <i className="fa-regular fa-star"></i>
         </td>
-        <td>
-          <a onClick={(ev) => onRemoveMail(mail.id, ev)}><i class="fa-solid fa-trash"></i></a>
+        <td className="mail-list-from bold">{mail.from}</td>
+        <td className="mail-title-subject">
+          <span className="bold">{mail.subject}</span> -{" "}
+          {mail.body}
         </td>
-        <td><i class="fa-regular fa-envelope"></i></td>
-        <td>{mail.sentAt}</td>
+        <td className="mail-list-delete">
+          <a onClick={(ev) => onRemoveMail(mail.id, ev)}>
+            <i className="fa-solid fa-trash"></i>
+          </a>
+        </td>
+        <td className="mail-list-read">
+          <a onClick={(ev) => changeReadStatus(mail.id, ev)}>
+            <i className="fa-regular fa-envelope"></i>
+          </a>
+        </td>
+        <td className="mail-list-date bold">{mail.sentAt}</td>
       </tr>
       <tr hidden={!isExpanded}>
         <td colSpan="6">

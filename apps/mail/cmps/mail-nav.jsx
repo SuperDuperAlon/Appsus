@@ -1,6 +1,9 @@
 const { NavLink } = ReactRouterDOM;
 
-export function MailNav({ changeStatus }) {
+export function MailNav({ changeStatus, countUnreadEmails }) {
+
+  const unreadEmailsCount = countUnreadEmails()
+  console.log(unreadEmailsCount);
   return (
     <aside className="main-nav ">
       <ul>
@@ -11,7 +14,7 @@ export function MailNav({ changeStatus }) {
           Trash
         </NavLink>
         <NavLink to="/mail/unread" onClick={() => changeStatus("unread")}>
-          Unread
+          Unread {unreadEmailsCount}
         </NavLink>
         <NavLink to="/mail/sent" onClick={() => changeStatus("sent")}>
           Sent

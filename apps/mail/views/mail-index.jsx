@@ -12,13 +12,18 @@ import { asyncStorageService } from "../../../services/async-storage.service.js"
 export function MailIndex() {
   const [mails, setMails] = useState([]);
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter());
+  const [sortBy, setSortBy] = useState("sentAt");
 
   useEffect(() => {
     loadMails();
   }, [filterBy]);
 
+  useEffect(() => {
+    loadMails();
+  }, [sortBy]);
+
   function loadMails() {
-    mailService.query(filterBy).then((mails) => setMails(mails));
+    mailService.query(filterBy, sortBy).then((mails) => setMails(mails));
   }
 
   function openComposeBtnSection() {
@@ -34,33 +39,30 @@ export function MailIndex() {
   }
 
   function onRemoveMail(mailId, ev) {
-    ev.stopPropagation()
+    ev.stopPropagation();
     mailService.remove(mailId).then(() => {
       const updatedeMails = mails.filter((mail) => mail.id !== mailId);
       setMails(updatedeMails);
     });
   }
 
+  function changeReadStatus(mailId, ev) {
+    ev.stopPropagation();
+  }
+
   function sortByNumbers() {
-    return mailService.query().then((mails) =>
-      mails
-        .sort((a, b) => a.sentAt - b.sentAt)
-        .then((mails) => {
-          setMails(mails);
-          countUnreadEmails();
-          loadMails();
-        })
-    );
+    let sort = "sentAt";
+    console.log(sort);
+    setSortBy(sort);
+    loadMails();
   }
 
   function sortByAlphabet() {
-    const alphaSort = new Promise((mails) =>
-      mails.sort().then((mails) => {
-        setMails(mails);
-        loadMails();
-      })
-    );
-    return alphaSort;
+    let sort = "from";
+    console.log("this is working");
+    console.log(sort);
+    setSortBy(sort);
+    loadMails();
   }
 
   function filterByText(value) {
@@ -74,8 +76,9 @@ export function MailIndex() {
   }
 
   function countUnreadEmails() {
-    mailService.query().then((mails) => mails.filter((mail) => !mail.isRead));
-    return console.log(mails.length);
+    const temp = mails.filter((mail) => !mail.isRead);
+    console.log(temp.length);
+    return temp.length;
   }
 
   if (!mails) return <h1>Loading</h1>;
@@ -83,11 +86,15 @@ export function MailIndex() {
     <section className="mail-index">
       <MailSearchBar
         filterByText={filterByText}
-        sorBytNumbers={sortByNumbers}
+        sortByNumbers={sortByNumbers}
         sortByAlphabet={sortByAlphabet}
       />
       <MailCompose openComposeBtnSection={openComposeBtnSection} />
-      <MailNav changeStatus={changeStatus} />
+      <MailNav
+        changeStatus={changeStatus}
+        countUnreadEmails={countUnreadEmails}
+        changeReadStatus={changeReadStatus}
+      />
       <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <MailAdd onSendMail={onSendMail} />
     </section>

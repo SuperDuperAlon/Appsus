@@ -29,3 +29,7 @@
     margin: 0;
     list-style-type: none;
 }
+
+.bold {
+    font-weight: bold;
+}

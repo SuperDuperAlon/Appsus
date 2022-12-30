@@ -16,7 +16,7 @@ export const mailService = {
   //   put,
 };
 
-function query(filterBy = getDefaultFilter()) {
+function query(filterBy = getDefaultFilter(), sortBy) {
   return asyncStorageService.query(MAIL_KEY).then((mails) => {
     if (filterBy.from) {
       const regex = new RegExp(filterBy.from, "i");
@@ -38,6 +38,12 @@ function query(filterBy = getDefaultFilter()) {
           break;
       }
     }
+    if (sortBy === "from") {
+      mails.sort((a, b) => a.from - b.from);
+    }
+    if (sortBy === "sentAt") {
+      mails.sort((a, b) => a.sentAt - b.sentAt);
+    }
     return mails;
   });
 }
@@ -53,6 +59,14 @@ function post(mail) {
   mail.from = USER_EMAIL;
   mail.removedAt = null;
   return asyncStorageService.post(MAIL_KEY, mail);
+}
+
+function put(mail) {
+  return asyncStorageService.put(MAIL_KEY, book);
+}
+
+function get(mailId) {
+  return asyncStorageService.get(MAIL_KEY, mailId);
 }
 
 function getDefaultFilter() {
@@ -112,6 +126,156 @@ function _createMails() {
         body: "This is the third mail",
         isRead: true,
         sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "baba@rabbsdsdsdsit.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1351133930594),
+        removedAt: null,
+        from: "baba@rabbsdsdsdsit.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "njdksg@rajdsft.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "dfgsd@dfdfdt.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "Would love to catch up sometimes",
+        isRead: false,
+        sentAt: getActualDate(1651133930594),
+        removedAt: true,
+        from: "momo@momo.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Hello!",
+        body: "This is the second mail",
+        isRead: false,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "popo@popo.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "jojo@rabbit.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "baba@rabbsdsdsdsit.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1351133930594),
+        removedAt: null,
+        from: "baba@rabbsdsdsdsit.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "njdksg@rajdsft.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "dfgsd@dfdfdt.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "Would love to catch up sometimes",
+        isRead: false,
+        sentAt: getActualDate(1651133930594),
+        removedAt: true,
+        from: "momo@momo.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Hello!",
+        body: "This is the second mail",
+        isRead: false,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "popo@popo.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "jojo@rabbit.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1651133930594),
+        removedAt: null,
+        from: "baba@rabbsdsdsdsit.com",
+        to: USER_EMAIL,
+      },
+      {
+        id: utilService.makeId(),
+        subject: "Miss you!",
+        body: "This is the third mail",
+        isRead: true,
+        sentAt: getActualDate(1351133930594),
         removedAt: null,
         from: "baba@rabbsdsdsdsit.com",
         to: USER_EMAIL,
