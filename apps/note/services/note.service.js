@@ -10,7 +10,8 @@ export const noteService = {
     remove,
     getEmptyTodo,
     getDefaultFilter,
-    get
+    get,
+    createPinned
 }
 
 const NOTE_KEY = "noteDB"
@@ -33,8 +34,12 @@ function loadImageFromInput(ev, onImageReady) {
 
 }
 
-function get(bookId){
-    return asyncStorageService.get(NOTE_KEY, bookId)
+function get(noteId){
+    return asyncStorageService.get(NOTE_KEY, noteId)
+}
+
+function createPinned(noteId){
+    return asyncStorageService.unshift(NOTE_KEY, noteId)
 }
 
 function query(filterBy) {
