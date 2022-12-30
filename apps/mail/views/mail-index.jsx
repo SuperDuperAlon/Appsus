@@ -28,7 +28,6 @@ export function MailIndex() {
   function onSendMail(ev, mailToAdd) {
     ev.preventDefault();
     mailService.post(mailToAdd).then((mail) => {
-      console.log("new mail", mail);
       setMails(mails);
       loadMails();
     });
@@ -65,16 +64,12 @@ export function MailIndex() {
   }
 
   function filterByText(value) {
-    console.log(filterBy);
     let filter = { ...filterBy, from: value };
-    console.log(filter);
     setFilterBy(filter);
   }
 
   function changeStatus(value) {
-    console.log(value);
     let filter = { ...filterBy, status: value };
-    console.log(filter);
     setFilterBy(filter);
   }
 

@@ -18,16 +18,16 @@ export function MailPreview({ mail, onRemoveMail }) {
           setIsExpanded(!isExpanded);
         }}
       >
-        <td>🐱‍🚀</td>
+        <td><i class="fa-regular fa-star"></i></td>
         <td>{mail.from}</td>
         <td>
           <span className="mail-title-bold">{mail.subject}</span> - {mail.body}
         </td>
         <td>
-          <button onClick={(ev) => onRemoveMail(mail.id, ev)}>🗑</button>
+          <a onClick={(ev) => onRemoveMail(mail.id, ev)}><i class="fa-solid fa-trash"></i></a>
         </td>
-        <td>✉</td>
-        <td>{mail.semtAt}</td>
+        <td><i class="fa-regular fa-envelope"></i></td>
+        <td>{mail.sentAt}</td>
       </tr>
       <tr hidden={!isExpanded}>
         <td colSpan="6">
