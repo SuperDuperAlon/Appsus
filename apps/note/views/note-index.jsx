@@ -36,8 +36,8 @@ export function NoteIndex() {
     })
 }
 
-  function onRemoveNote(noteId){
-    // ev.preventDefault()
+  function onRemoveNote(ev, noteId){
+    ev.stopPropagation()
     noteService.remove(noteId).then(()=>{
       const updatedNotes = notes.filter(note => note.id !== noteId)
       setNotes(updatedNotes)
@@ -53,6 +53,10 @@ export function NoteIndex() {
     navigate(`/note/${note.id}`)
   }
 
+  function onClosePreview(){
+    navigate('/note')
+  }
+
   return (
     <div>
       <NoteFilter onSetFilter={onSetFilter}/>
@@ -60,7 +64,6 @@ export function NoteIndex() {
       <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview}/>
       {/* {selectedNote && <Link to=`/car/{selectedNote}`></Link>} */}
       <Outlet/>
-      <div>note app</div>
     </div>
   )
 }

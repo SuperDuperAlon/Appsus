@@ -9,18 +9,14 @@ export const noteService = {
     save,
     remove,
     getEmptyTodo,
-    getDefaultFilter
+    getDefaultFilter,
+    get
 }
 
 const NOTE_KEY = "noteDB"
 _createNotes()
 
 
-// function onImgInput(ev) {
-//     const img = loadImageFromInput(ev, renderImg)
-//     console.log(img);
-//     return img
-// }
 
 // CallBack func will run on success load of the img
 function loadImageFromInput(ev, onImageReady) {
@@ -37,12 +33,9 @@ function loadImageFromInput(ev, onImageReady) {
 
 }
 
-// function renderImg(img) {
-//     // Draw the img on the canvas
-//     // gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-//     // console.log(img);
-//     return img
-// }
+function get(bookId){
+    return asyncStorageService.get(NOTE_KEY, bookId)
+}
 
 function query(filterBy) {
     return asyncStorageService.query(NOTE_KEY)
@@ -61,7 +54,7 @@ function query(filterBy) {
 
 function getEmptyNote(inputType){
     if (inputType==='note-todos'){
-        return {id: '' , type:'', isPinned: false, info: {title:'',todos:[]}, style: {backgroundColor: "white"}}
+        return {id: '' , type:'', isPinned: false, info: {title:'',todos:[]}, style: {backgroundColor: "#ffffff"}}
     }
     return {id: '' , type:'', isPinned: false, info: {}, style: {backgroundColor: "#ffffff"}}
 }

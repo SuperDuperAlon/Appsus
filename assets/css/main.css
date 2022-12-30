@@ -25,6 +25,7 @@
 /* Note cmps */
 @import './note/note-list.css';
 @import './note/note-add.css';
+@import './note/note-preview.css';
 
 /* Email Cmps */
 @import url('./email/email-list.css');
