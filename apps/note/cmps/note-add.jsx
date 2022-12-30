@@ -16,9 +16,19 @@ export function NoteAdd({onSaveNote}) {
         setNewNote(noteService.getEmptyNote(inputType))
     },[inputType])
     
-  
-    
+    // useEffect(() => {
+    //     if (!noteID) return
+    //     loadCar()
+    // }, [])
 
+    // function loadCar() {
+    //     noteService.get(noteID)
+    //         .then((note) => setNewNote(note))
+    //         .catch((err) => {
+    //             console.log('Had issues in note ef', err)
+    //             navigate('/car')
+    //         })
+    // }
 
     function handleChange({ target }) {
         let { value, name: field ,type} = target
@@ -36,7 +46,7 @@ export function NoteAdd({onSaveNote}) {
         if(ev.key === 'Enter'){
             setNewNote( (prevNote)=> ({...prevNote, info : {...prevNote.info, todos : [...prevNote.info.todos , newTodo]}}))
             console.log(newNote)
-            setNewTodo(noteService.getEmptyTodo(inputType))
+            setNewTodo(noteService.getEmptyTodo())
         }
 
     }
@@ -56,8 +66,9 @@ export function NoteAdd({onSaveNote}) {
     }
     
 
-    return <section className="note-add" onSubmit={()=> onSaveNote(event,newNote, inputType, setNewNote)}>
-        <form>
+
+    return <section className="note-add" onSubmit={(ev)=> onSaveNote(ev,newNote, inputType, setNewNote)}>
+        <form id="note-form">
              {(inputType === 'note-img'  || inputType==='note-video') && <input type="txt"
              name="url"
              id="url"

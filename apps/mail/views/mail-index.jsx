@@ -39,7 +39,7 @@ export function MailIndex() {
   }
 
   function onRemoveMail(mailId, ev) {
-    ev.stopPropagation();
+    ev.stopPropagation()
     mailService.remove(mailId).then(() => {
       const updatedeMails = mails.filter((mail) => mail.id !== mailId);
       setMails(updatedeMails);

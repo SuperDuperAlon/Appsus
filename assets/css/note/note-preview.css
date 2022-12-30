@@ -1,0 +1,14 @@
+
+
+.note-preview{
+    position: fixed;
+    width: 400px;
+    height: 500px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px #e0e0e0 solid;
+    border-radius: 0.5rem ;
+}
+
