@@ -12,9 +12,9 @@ export const mailService = {
   getDefaultFilter,
   getTemplateMail,
   countUnreadEmails,
-  //   get,
+  get,
   post,
-  //   put,
+  put,
 };
 
 function query(filterBy = getDefaultFilter(), sortBy) {
@@ -53,11 +53,12 @@ function query(filterBy = getDefaultFilter(), sortBy) {
       }
     }
     if (sortBy === "from") {
-      mails.sort((a, b) => a.from - b.from);
+     mails = mails.sort((a, b) => a.from - b.from);
     }
     if (sortBy === "sentAt") {
-      mails.sort((a, b) => a.sentAt - b.sentAt);
+    mails =  mails.sort((a, b) => a.sentAt - b.sentAt);
     }
+    console.log(mails);
     return mails;
   });
 }
@@ -76,6 +77,7 @@ function post(mail) {
 }
 
 function put(mail) {
+  console.log(mail);
   return asyncStorageService.put(MAIL_KEY, mail);
 }
 
@@ -105,7 +107,6 @@ function countUnreadEmails() {
     const filteredMails = mails.filter(
       (mail) => !mail.isRead && mail.to === USER_EMAIL
     );
-    console.log(filteredMails);
     return filteredMails;
   });
 }

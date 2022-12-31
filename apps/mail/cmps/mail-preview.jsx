@@ -3,20 +3,26 @@ const { useState, Fragment, useEffect } = React;
 import { asyncStorageServe } from "../../../services/async-storage.service.js";
 import { mailService } from "../services/mail.service.js";
 
-export function MailPreview({ mail, onRemoveMail, setReadStatus }) {
+import { MailOpen } from "./mail-opened.jsx";
+
+export function MailPreview({ mail, onRemoveMail, changeReadStatus }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  // const [carToEdit, setCarToEdit] = useState(null)
-  //   const navigate = useNavigate()
-  const [isRead, setIsRead] = useState(false);
 
   function getNameFromEmail(name) {
     const idx = name.indexOf("@");
     return name.substring(0, idx);
   }
 
-  // function setReadStatus(mailId) {
-  //   console.log(mailId);
-  // }
+  function setReadStatus(mailId) {
+    changeReadStatus(mailId);
+    setIsExpanded(!isExpanded);
+    const mailToEdit = mailService
+      .get(mailId)
+      .then((mail) => console.log(mail));
+    console.log(mailToEdit);
+    // const mail = Promise.resolve(mailToEdit)
+    // .then((mail) => console.log(mail));
+  }
 
   function changeReadStyling() {
     if (mail.isRead) return "read";
@@ -31,9 +37,8 @@ export function MailPreview({ mail, onRemoveMail, setReadStatus }) {
         //   setReadStatus(mail.id)
         // }}
         onClick={() => {
-          setIsExpanded(!isExpanded)
+          setReadStatus(mail.id);
         }}
-
       >
         <td className="mail-list-star">
           <i className="fa-regular fa-star"></i>
@@ -57,10 +62,15 @@ export function MailPreview({ mail, onRemoveMail, setReadStatus }) {
         <td className="mail-list-date">{mail.sentAt}</td>
       </tr>
       <tr hidden={!isExpanded}>
-        <td colSpan="6">
-          <h1>{mail.from}</h1>
-          <h3>{mail.subject}</h3>
-          <h3>{mail.body}</h3>
+        <td colSpan="6" className="mail-list-preview">
+          <h1 className="mail-preview-subject">{mail.subject}</h1>
+          <div className="mail-preview-content">
+            <h4 className="mail-preview-from">
+              {getNameFromEmail(`${mail.from}`)}
+            </h4>
+            <h6 className="mail-preview-to">to me</h6>
+            <h3 className="mail-preview-body">{mail.body}</h3>
+          </div>
         </td>
       </tr>
     </Fragment>

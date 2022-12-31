@@ -64,7 +64,7 @@ export function MailIndex() {
     setFilterBy(filter);
   }
 
-  function changeStatus(value) {
+  function changeNavStatus(value) {
     let filter = { ...filterBy, status: value };
     setFilterBy(filter);
   }
@@ -74,8 +74,17 @@ export function MailIndex() {
     setFilterBy(filter);
   }
 
-  function setReadStatus(mailId) {
-    console.log('this is working');
+  function changeReadStatus(mailId) {
+    const mail = mailService
+      .get(mailId)
+      .then((mail) => console.log(mail))
+      .then((mail) => {
+        mail = { ...mail, isRead: true };
+      })
+      .then((mail) => console.log(mail))
+      .then((mail) => mailService.put(mail));
+    console.log(mail);
+    return mail;
   }
 
   function getUnreadEmailsCount() {
@@ -89,16 +98,20 @@ export function MailIndex() {
         filterByText={filterByText}
         sortByNumbers={sortByNumbers}
         sortByAlphabet={sortByAlphabet}
-        setReadStatus={setReadStatus}
+        // setReadStatus={setReadStatus}
         filterByRead={filterByRead}
       />
       <MailCompose openComposeBtnSection={openComposeBtnSection} />
       <MailNav
-        changeStatus={changeStatus}
-        setReadStatus={setReadStatus}
+        changeNavStatus={changeNavStatus}
+        // setReadStatus={setReadStatus}
         getUnreadEmailsCount={getUnreadEmailsCount}
       />
-      <MailList mails={mails} onRemoveMail={onRemoveMail} />
+      <MailList
+        mails={mails}
+        onRemoveMail={onRemoveMail}
+        changeReadStatus={changeReadStatus}
+      />
       <MailAdd onSendMail={onSendMail} />
     </section>
   );

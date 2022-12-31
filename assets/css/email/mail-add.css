@@ -1,5 +1,5 @@
 .mail-add {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 2%;
     background-color: white;
@@ -24,12 +24,12 @@
 
 .mail-add-subject {
     padding: 10px 0;
-    box-shadow: inset 0 -1px 0 0 
+    box-shadow: inset 0 -1px 0 0
 }
 
 .mail-add-body {
     padding: 10px 0;
-    box-shadow: inset 0 -1px 0 0 
+    box-shadow: inset 0 -1px 0 0
 }
 
 .mail-add-submit-btn {}
