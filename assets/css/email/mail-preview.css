@@ -1,0 +1,42 @@
+.mail-preview-subject {
+    font-size: 22px;
+    padding: 20px 0 8px 46px;
+}
+
+
+.mail-preview-content {
+    padding-left: 46px
+}
+
+.mail-preview-from {
+    font-size: 14px;
+}
+
+.mail-preview-to {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.mail-preview-body {
+    font-size: 13px;
+    color: #222222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    margin-bottom: 4rem;
+}
+
+.mail-preview-save-btn {
+    margin-left: 46px;
+    border-radius: 45px;
+    border: 1px solid #747775;
+    background-color: white;
+    padding: 0.5rem;
+}
+
+.mail-preview-save-btn:hover {
+    background-color: rgba(242, 242, 242, 1);
+}
+.mail-preview-save-btn:active{
+box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}

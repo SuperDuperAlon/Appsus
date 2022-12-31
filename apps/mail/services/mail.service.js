@@ -11,9 +11,10 @@ export const mailService = {
   remove,
   getDefaultFilter,
   getTemplateMail,
-  //   get,
+  countUnreadEmails,
+  get,
   post,
-  //   put,
+  put,
 };
 
 function query(filterBy = getDefaultFilter(), sortBy) {
@@ -38,12 +39,28 @@ function query(filterBy = getDefaultFilter(), sortBy) {
           break;
       }
     }
+    if (filterBy.read) {
+      switch (filterBy.read) {
+        case "read":
+          mails = mails.filter((mail) => mail.isRead);
+          break;
+        case "unread":
+          mails = mails.filter((mail) => !mail.isRead);
+          break;
+        case "all":
+          mails = mails.filter((mail) => mail);
+          break;
+      }
+    }
     if (sortBy === "from") {
-      mails.sort((a, b) => a.from - b.from);
+      mails = mails.sort((a, b) => a.from.localeCompare(b.from));
     }
     if (sortBy === "sentAt") {
-      mails.sort((a, b) => a.sentAt - b.sentAt);
+      mails = mails.sort(function (a, b) {
+        return new Date(b.sentAt) - new Date(a.sentAt);
+      });
     }
+    console.log(mails);
     return mails;
   });
 }
@@ -62,7 +79,8 @@ function post(mail) {
 }
 
 function put(mail) {
-  return asyncStorageService.put(MAIL_KEY, book);
+  console.log(mail);
+  return asyncStorageService.put(MAIL_KEY, mail);
 }
 
 function get(mailId) {
@@ -70,7 +88,7 @@ function get(mailId) {
 }
 
 function getDefaultFilter() {
-  return { from: "", status: "inbox" };
+  return { from: "", status: "inbox", read: "all" };
 }
 
 function getTemplateMail(to = "", subject = "", body = "") {
@@ -84,6 +102,15 @@ function getActualDate(date) {
   const paddedDay = utilService.padNum(day);
   const actualDate = `${month} ${paddedDay}`;
   return actualDate;
+}
+
+function countUnreadEmails() {
+  return asyncStorageService.query(MAIL_KEY).then((mails) => {
+    const filteredMails = mails.filter(
+      (mail) => !mail.isRead && mail.to === USER_EMAIL
+    );
+    return filteredMails;
+  });
 }
 
 function _createMails() {

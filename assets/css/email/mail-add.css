@@ -1,0 +1,40 @@
+.mail-add {
+    position: fixed;
+    bottom: 0;
+    right: 2%;
+    background-color: white;
+    width: 526px;
+    height: 534px;
+    border: 1px solid darkgrey;
+
+    z-index: 1;
+}
+
+.mail-add-header {
+    padding: 10px 0;
+    height: 40px;
+    background-color: #f2f6fc;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.mail-add-form {
+    padding: 0 1rem;
+}
+
+.mail-add-receipient {
+    padding: 10px 0;
+
+}
+
+.mail-add-subject {
+    padding: 10px 0;
+    box-shadow: inset 0 -1px 0 0
+}
+
+.mail-add-body {
+    padding: 10px 0;
+    box-shadow: inset 0 -1px 0 0
+}
+
+.mail-add-submit-btn {}

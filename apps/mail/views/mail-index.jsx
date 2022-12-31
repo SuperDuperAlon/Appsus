@@ -13,6 +13,7 @@ export function MailIndex() {
   const [mails, setMails] = useState([]);
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter());
   const [sortBy, setSortBy] = useState("sentAt");
+  const [isCompose, setIsCompose] = useState(false);
 
   useEffect(() => {
     loadMails();
@@ -22,12 +23,18 @@ export function MailIndex() {
     loadMails();
   }, [sortBy]);
 
+  useEffect(() => {
+    loadMails();
+  }, [mails]);
+
   function loadMails() {
     mailService.query(filterBy, sortBy).then((mails) => setMails(mails));
   }
 
   function openComposeBtnSection() {
-    console.log("section opened");
+    setComposeSection(!composeSection);
+    openMailEditor();
+    console.log(composeSection);
   }
 
   function onSendMail(ev, mailToAdd) {
@@ -46,10 +53,6 @@ export function MailIndex() {
     });
   }
 
-  function changeReadStatus(mailId, ev) {
-    ev.stopPropagation();
-  }
-
   function sortByNumbers() {
     let sort = "sentAt";
     console.log(sort);
@@ -59,8 +62,6 @@ export function MailIndex() {
 
   function sortByAlphabet() {
     let sort = "from";
-    console.log("this is working");
-    console.log(sort);
     setSortBy(sort);
     loadMails();
   }
@@ -70,15 +71,29 @@ export function MailIndex() {
     setFilterBy(filter);
   }
 
-  function changeStatus(value) {
+  function changeNavStatus(value) {
     let filter = { ...filterBy, status: value };
     setFilterBy(filter);
   }
 
-  function countUnreadEmails() {
-    const temp = mails.filter((mail) => !mail.isRead);
-    console.log(temp.length);
-    return temp.length;
+  function filterByRead(value) {
+    let filter = { ...filterBy, read: value };
+    setFilterBy(filter);
+  }
+
+  function changeReadStatus(mailId) {
+    const mail = mailService
+      .get(mailId)
+      .then((mail) => {
+        return (mail = { ...mail, isRead: true });
+      })
+      .then((mail) => mailService.put(mail))
+    setMails(mails);
+    return mail;
+  }
+
+  function getUnreadEmailsCount() {
+    return mailService.countUnreadEmails().then((mails) => mails.length);
   }
 
   if (!mails) return <h1>Loading</h1>;
@@ -88,14 +103,20 @@ export function MailIndex() {
         filterByText={filterByText}
         sortByNumbers={sortByNumbers}
         sortByAlphabet={sortByAlphabet}
+        // setReadStatus={setReadStatus}
+        filterByRead={filterByRead}
       />
       <MailCompose openComposeBtnSection={openComposeBtnSection} />
       <MailNav
-        changeStatus={changeStatus}
-        countUnreadEmails={countUnreadEmails}
+        changeNavStatus={changeNavStatus}
+        // setReadStatus={setReadStatus}
+        getUnreadEmailsCount={getUnreadEmailsCount}
+      />
+      <MailList
+        mails={mails}
+        onRemoveMail={onRemoveMail}
         changeReadStatus={changeReadStatus}
       />
-      <MailList mails={mails} onRemoveMail={onRemoveMail} />
       <MailAdd onSendMail={onSendMail} />
     </section>
   );

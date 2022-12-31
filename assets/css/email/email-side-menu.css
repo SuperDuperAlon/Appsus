@@ -1,10 +1,38 @@
-.main-nav{
+.mail-nav {
     background-color: #f6f8fc;
     display: flex;
     width: 100%;
 }
 
-.main-nav ul {
+.mail-nav ul {
     display: flex;
     flex-direction: column;
+    width: 90%
+}
+
+.mail-nav a>* {
+    padding: 12px 0;
+    display: flex;
+
+}
+
+.mail-nav ul a {
+    display: flex;
+}
+
+.mail-nav ul a.active {
+    background-color: #d3e3fd;
+    border-radius: 0 25px 25px 0;
+    font-weight: bold;
+}
+
+.mail-nav-icon {
+    margin-left: 26px;
+    margin-right: 12px
+}
+
+.mail-nav-menu-item {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
 }

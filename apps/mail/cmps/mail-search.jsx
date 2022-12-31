@@ -1,4 +1,9 @@
-export function MailSearchBar({ filterByText, sortByNumbers, sortByAlphabet }) {
+export function MailSearchBar({
+  filterByText,
+  sortByNumbers,
+  sortByAlphabet,
+  filterByRead,
+}) {
   function handleChange({ target }) {
     let { value } = target;
     filterByText(value);
@@ -9,7 +14,7 @@ export function MailSearchBar({ filterByText, sortByNumbers, sortByAlphabet }) {
       <div className="mail-search-bar">
         <div className="mail-search-form">
           <a>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
           </a>
           <form>
             <label htmlFor="sender"></label>
@@ -24,6 +29,9 @@ export function MailSearchBar({ filterByText, sortByNumbers, sortByAlphabet }) {
           </form>
         </div>
         <div className="mail-search-btn">
+          <button onClick={() => filterByRead("unread")}>unread</button>
+          <button onClick={() => filterByRead("read")}>read</button>
+          <button onClick={() => filterByRead("all")}>read</button>
           <button onClick={sortByNumbers}>#</button>
           <button onClick={sortByAlphabet}>Aa</button>
         </div>

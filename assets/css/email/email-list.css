@@ -1,5 +1,5 @@
 .mail-list {
-    background-color: #ffffff;
+    background-color: #f6f8fc;
 }
 
 table {
@@ -10,7 +10,8 @@ table {
     text-indent: 0;
     padding: 0;
     margin: 0;
-    width: 100%
+    width: 100%;
+    background-color: white;
 }
 
 td {
@@ -35,13 +36,17 @@ tr:hover {
 
 .mail-list-from {
     width: 200px;
+    font-weight: bold;
 }
 
 .mail-list-subject {
-width:fit-content;
-overflow: hidden;
-display: flex;
-flex-grow: 1;
+    width: fit-content;
+    overflow: hidden;
+    display: flex;
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .mail-list-delete {
@@ -54,9 +59,16 @@ flex-grow: 1;
 
 .mail-list-date {
     font-size: 12px;
+    font-weight: bold;
     width: 72px;
 }
 
 .mail-title-bold {
     font-weight: bolder;
+}
+
+.read{
+    background-color: #f2f6fc;
+    /* background-color: red; */
+    font-weight: 400;
 }
