@@ -32,6 +32,7 @@
 @import url('./email/email-search-bar.css');
 @import url('./email/email-side-menu.css');
 @import url('./email/email-compose-btn.css');
+@import url('./email/mail-add.css');
 
 /* Global Cmps */
 @import './cmps/user-msg.css';
