@@ -22,6 +22,10 @@ export function NoteAdd({ onSaveNote }) {
         if (!noteID) return
         loadNote()
     }, [])
+    
+    useEffect(() => {
+    }, [])
+
 
     function loadNote() {
         noteService.get(noteID)
@@ -66,14 +70,23 @@ export function NoteAdd({ onSaveNote }) {
 
     }
 
-    function createNewNote() {
-        const newestNote = noteService.getEmptyNote(inputType)
-        setNewNote((prevNote) => ({ ...prevNote, newestNote }))
+    function saveNote(ev, newNote){
+        ev.preventDefault()
+        if(!newNote.info || (!newNote.info.title && !newNote.info.todos) ) return
+        if (!newNote.id){
+            console.log(newNote.id);
+            setNewNote(noteService.getEmptyNote(inputType))
+        }
+        onSaveNote(ev, newNote)
     }
 
+    // function createNewNote() {
+    //     const newestNote = noteService.getEmptyNote(inputType)
+    //     setNewNote((prevNote) => ({ ...prevNote, newestNote }))
+    // }
 
-    console.log(inputType);
-    return <section className="note-add" onSubmit={(ev) => onSaveNote(ev, newNote, inputType, setNewNote)}>
+
+    return <section className={`note-add`} onSubmit={(ev) => saveNote(ev, newNote)}>
         <form>
 
             {(inputType === 'note-img' || inputType === 'note-video') && <input type="txt"

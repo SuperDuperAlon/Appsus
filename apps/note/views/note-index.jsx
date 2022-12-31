@@ -30,16 +30,16 @@ export function NoteIndex() {
     .then((notes)=> setNotes(notes))
   }
   
-  function onSaveNote(ev, newNote, inputType ,setNewNote) {
+  function onSaveNote(ev, newNote) {
     setIsPreview(false)
     ev.preventDefault()
-    console.log('hi');
+    // console.log('hi');
     noteService.save(newNote).then((note) => {
         // console.log('Note saved', note)
         setNotes(notes)
-        console.log(notes);
+        // console.log(notes);
         // console.log(inputType)
-        setNewNote(noteService.getEmptyNote(inputType))
+        // setNewNote(noteService.getEmptyNote(inputType))
         loadNotes()
     })
 }
@@ -72,19 +72,13 @@ export function NoteIndex() {
     .then(note=> {
       (note.isPinned ? note.isPinned = false : note.isPinned = true)
       setPinnedNote(note)
+      noteService.save(note)
+    .then(note=> {
+        setNotes(notes)
+        loadNotes()
+      })
     })
-    // .then(note=>{
-    //   noteService.save(note)
-    //   .then(()=>{
-    //     setPinnedNote(note)
-    //     setNotes(notes)
-    //     loadNotes()
-    //   })})
-    noteService.save(pinnedNote).then(note=> {
-      console.log(notes);
-      setNotes(notes)
-      loadNotes()
-    })
+  
   }
 
   function onClosePreview(){
@@ -96,8 +90,6 @@ export function NoteIndex() {
 
   }
 
-  // console.log(isPreview); 
-  console.log(pinnedNote)
   return (
     <div>
       <NoteFilter onSetFilter={onSetFilter}/>
