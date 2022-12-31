@@ -122,7 +122,7 @@ function _createMails() {
         isRead: false,
         sentAt: getActualDate(1651133930594),
         removedAt: true,
-        from: "momo@momo.com",
+        from: "hayley@momo.com",
         to: USER_EMAIL,
       },
       {
@@ -132,7 +132,7 @@ function _createMails() {
         isRead: false,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "popo@popo.com",
+        from: "theodore@popo.com",
         to: USER_EMAIL,
       },
       {
@@ -142,7 +142,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "jojo@rabbit.com",
+        from: "lottie@rabbit.com",
         to: USER_EMAIL,
       },
       {
@@ -152,7 +152,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "baba@rabbsdsdsdsit.com",
+        from: "adrian@rabbsdsdsdsit.com",
         to: USER_EMAIL,
       },
       {
@@ -162,7 +162,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1351133930594),
         removedAt: null,
-        from: "baba@rabbsdsdsdsit.com",
+        from: "caroline@rabbsdsdsdsit.com",
         to: USER_EMAIL,
       },
       {
@@ -172,7 +172,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "njdksg@rajdsft.com",
+        from: "sara@rajdsft.com",
         to: USER_EMAIL,
       },
       {
@@ -182,7 +182,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "dfgsd@dfdfdt.com",
+        from: "hana@dfdfdt.com",
         to: USER_EMAIL,
       },
       {
@@ -192,7 +192,7 @@ function _createMails() {
         isRead: false,
         sentAt: getActualDate(1651133930594),
         removedAt: true,
-        from: "momo@momo.com",
+        from: "dale@momo.com",
         to: USER_EMAIL,
       },
       {
@@ -202,7 +202,7 @@ function _createMails() {
         isRead: false,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "popo@popo.com",
+        from: "melanie@popo.com",
         to: USER_EMAIL,
       },
       {
@@ -212,7 +212,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "jojo@rabbit.com",
+        from: "hannah@rabbit.com",
         to: USER_EMAIL,
       },
       {
@@ -222,7 +222,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "baba@rabbsdsdsdsit.com",
+        from: "daniella@rabbsdsdsdsit.com",
         to: USER_EMAIL,
       },
       {
@@ -232,7 +232,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1351133930594),
         removedAt: null,
-        from: "baba@rabbsdsdsdsit.com",
+        from: "rosie@rabbsdsdsdsit.com",
         to: USER_EMAIL,
       },
       {
@@ -242,7 +242,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "njdksg@rajdsft.com",
+        from: "susan@rajdsft.com",
         to: USER_EMAIL,
       },
       {
@@ -252,7 +252,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "dfgsd@dfdfdt.com",
+        from: "tanya@dfdfdt.com",
         to: USER_EMAIL,
       },
       {
@@ -262,7 +262,7 @@ function _createMails() {
         isRead: false,
         sentAt: getActualDate(1651133930594),
         removedAt: true,
-        from: "momo@momo.com",
+        from: "gregory@momo.com",
         to: USER_EMAIL,
       },
       {
@@ -272,7 +272,7 @@ function _createMails() {
         isRead: false,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "popo@popo.com",
+        from: "carmen@popo.com",
         to: USER_EMAIL,
       },
       {
@@ -282,7 +282,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "jojo@rabbit.com",
+        from: "timothy@rabbit.com",
         to: USER_EMAIL,
       },
       {
@@ -292,7 +292,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "baba@rabbsdsdsdsit.com",
+        from: "rhys@rabbsdsdsdsit.com",
         to: USER_EMAIL,
       },
       {
@@ -302,7 +302,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1351133930594),
         removedAt: null,
-        from: "baba@rabbsdsdsdsit.com",
+        from: "zakaria@rabbsdsdsdsit.com",
         to: USER_EMAIL,
       },
       {
@@ -312,7 +312,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "njdksg@rajdsft.com",
+        from: "philip@rajdsft.com",
         to: USER_EMAIL,
       },
       {
@@ -322,7 +322,7 @@ function _createMails() {
         isRead: true,
         sentAt: getActualDate(1651133930594),
         removedAt: null,
-        from: "dfgsd@dfdfdt.com",
+        from: "hugo@dfdfdt.com",
         to: USER_EMAIL,
       },
     ]

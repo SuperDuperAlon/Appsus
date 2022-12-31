@@ -40,10 +40,7 @@ tr:hover {
 }
 
 .mail-list-subject {
-    width: fit-content;
     overflow: hidden;
-    display: flex;
-    flex-grow: 1;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -70,5 +67,4 @@ tr:hover {
 .read{
     background-color: #f2f6fc;
     font-weight: 400;
-    text-overflow: ellipsis;
 }

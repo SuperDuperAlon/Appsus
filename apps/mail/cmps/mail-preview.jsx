@@ -32,7 +32,7 @@ export function MailPreview({ mail, onRemoveMail, changeReadStatus }) {
         <td className="mail-list-from capitalize">
           {getNameFromEmail(`${mail.from}`)}
         </td>
-        <td className="mail-title-subject">
+        <td className="mail-list-subject">
           <span className="mail-title-bold">{mail.subject}</span> - {mail.body}
         </td>
         <td className="mail-list-delete">
