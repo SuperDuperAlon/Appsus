@@ -19,8 +19,6 @@ export function NotePreview() {
     const [onSaveNote, onPinnedNote, onClosePreview, onRemoveNote] = useOutletContext()
 
 
-    console.log(onSaveNote);
-    console.log(onPinnedNote);
 
     useEffect(() => {
         loadNote()
