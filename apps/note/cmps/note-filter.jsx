@@ -28,11 +28,12 @@ export function NoteFilter({onSetFilter}) {
     
     
     return <section className="filter">
+        <label htmlFor="txt"><i className="fa-solid fa-magnifying-glass"></i></label>
         <form onSubmit={onSubmitFilter}>
-            <input type="text"
+        <input type="text"
                 id="txt"
                 name="txt"
-                placeholder="Search"
+                placeholder= "Search"
                 value={filterByToEdit.txt}
                 onChange={handleChange}
                 ref={elInputRef}

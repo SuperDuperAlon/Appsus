@@ -108,16 +108,16 @@ export function NoteAdd({ onSaveNote }) {
                 name="backgroundColor"
                 value={newNote.style.backgroundColor}
                 onChange={handleChange} />}
-                
-            <button className={"add-button"}>{newNote.id ? 'Save' : 'Add'}</button>
+
+            <button className="add-button">{newNote.id ? 'Save' : 'Add'}</button>
         </form>
 
 
         {!newNote.id && <div className="note-option">
-            <button onClick={() => setInputType('note-txt')}>Text</button>
-            <button onClick={() => setInputType('note-img')}>Photo</button>
-            <button onClick={() => setInputType('note-todos')}>Todo</button>
-            <button onClick={() => setInputType('note-video')}>Video</button>
+            <button onClick={() => setInputType('note-txt')}><i className="fa-regular fa-text"></i></button>
+            <button onClick={() => setInputType('note-img')}><i className="fa-regular fa-image"></i></button>
+            <button onClick={() => setInputType('note-todos')}><i className="fa-regular fa-square-check"></i></button>
+            <button onClick={() => setInputType('note-video')}><i className="fa-brands fa-square-youtube"></i></button>
         </div>}
     </section>
 }

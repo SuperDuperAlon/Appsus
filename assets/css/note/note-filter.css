@@ -1,0 +1,25 @@
+.filter{
+    position: absolute;
+    box-shadow: 0 1px 1px 0 rgb(65 69 73 / 30%), 0 1px 3px 1px rgb(65 69 73 / 15%);
+    width: 40%;
+    border-radius: 0.5rem;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}
+
+.filter input{
+    font-size: 1rem;
+    padding: 0.8rem;
+    outline: none;
+}
+
+
+.fa-magnifying-glass{
+    color: rgb(85, 84, 84);
+    font-size: 1rem;
+    padding-left: 5px;
+    outline: none;
+}

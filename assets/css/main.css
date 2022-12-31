@@ -26,6 +26,7 @@
 @import './note/note-list.css';
 @import './note/note-add.css';
 @import './note/note-preview.css';
+@import './note/note-filter.css';
 
 /* Email Cmps */
 @import url('./email/email-list.css');
