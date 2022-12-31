@@ -10,8 +10,7 @@ export const noteService = {
     remove,
     getEmptyTodo,
     getDefaultFilter,
-    get,
-    createPinned
+    get
 }
 
 const NOTE_KEY = "noteDB"
@@ -38,9 +37,9 @@ function get(noteId){
     return asyncStorageService.get(NOTE_KEY, noteId)
 }
 
-function createPinned(noteId){
-    return asyncStorageService.unshift(NOTE_KEY, noteId)
-}
+// function createPinned(noteId){
+//     return asyncStorageService.unshift(NOTE_KEY, noteId)
+// }
 
 function query(filterBy) {
     return asyncStorageService.query(NOTE_KEY)

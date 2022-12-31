@@ -16,6 +16,7 @@ export function NoteIndex() {
   const [isPreview, setIsPreview] = useState(false)
   const [selectedNote, setSelectedNote] = useState(null)
   const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+  const [pinnedNote, setPinnedNote] = useState(null)
 
   
   useEffect(()=>{
@@ -31,6 +32,7 @@ export function NoteIndex() {
   function onSaveNote(ev, newNote, inputType ,setNewNote) {
     setIsPreview(false)
     ev.preventDefault()
+    console.log('hi');
     noteService.save(newNote).then((note) => {
         // console.log('Note saved', note)
         setNotes(notes)
@@ -47,30 +49,56 @@ export function NoteIndex() {
       const updatedNotes = notes.filter(note => note.id !== noteId)
       setNotes(updatedNotes)
     })
-
+    
   }
   function onSetFilter(filterBy) {
     setFilterBy(filterBy)
-}
-
+  }
+  
   function onOpenPreview(note){
     setIsPreview(true)
     // setSelectedNote(note)
     navigate(`/note/${note.id}`)
   }
+  
+  function onPinnedNote(ev, noteId){
+    ev.preventDefault()
+    ev.stopPropagation()
+    // console.log(noteId)
+    noteService.get(noteId)
+    .then(note=> {
+      (note.isPinned ? note.isPinned = false : note.isPinned = true)
+      setPinnedNote(note)
+    })
+    // .then(note=>{
+    //   noteService.save(note)
+    //   .then(()=>{
+    //     setPinnedNote(note)
+    //     setNotes(notes)
+    //     loadNotes()
+    //   })})
+    noteService.save(pinnedNote).then(note=> {
+      console.log(notes);
+      setNotes(notes)
+      loadNotes()
+    })
+  }
 
   function onClosePreview(){
+    setIsPreview(false)
     navigate('/note')
   }
 
   // console.log(isPreview); 
+  console.log(pinnedNote)
   return (
     <div>
       <NoteFilter onSetFilter={onSetFilter}/>
       <NoteAdd onSaveNote={onSaveNote}/>
-      <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview}/>
+      <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview} onPinnedNote={onPinnedNote}/>
       {/* {selectedNote && <Link to=`/car/{selectedNote}`></Link>} */}
-      <Outlet />
+      <Outlet context={[onSaveNote, onPinnedNote, onClosePreview]} />
+      {/* <Outlet context={[onPinnedNote]} /> */}
     </div>
   )
 }

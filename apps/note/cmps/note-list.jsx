@@ -1,24 +1,40 @@
 
+const { useState, useEffect, useRef } = React
 import {DynamicCmp} from "../cmps/dynamic-cmp.jsx"
 
-export function NoteList({ notes , onRemoveNote , onOpenPreview}) {
+export function NoteList({ notes , onRemoveNote , onOpenPreview, onPinnedNote}) {
+
+    const arePinned = notes.some(note=> note.isPinned === true)
 
     return <div className="note-list-container">
+            {arePinned && <h6>Pinned</h6>}
             <ul className="note-list"> 
             {notes.map(note =>{
                 if(note.isPinned){
                     return <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
-                    <div className="note-operators"><button>Color</button><button onClick={(ev)=>onRemoveNote(ev, note.id)}>Delete</button></div></li>
+                   <div className="note-operators">
+                <button onClick={(ev) => onRemoveNote(ev, note.id)}><i className="fa-solid fa-trash"></i></button>
+                <button onClick={() => setIsEdit(true)}><i class="fa-solid fa-pen-to-square"></i></button>
+                <button><i class="fa-solid fa-envelope"></i></button>
+                <button><i class="fa-solid fa-palette"></i></button>
+                <button  onClick={(ev) => onPinnedNote(ev, note.id)}><i className= "fa-sharp fa-solid fa-thumbtack yellow" ></i></button>
+                </div></li>
                 }
                 })
             }
             </ul>
-
+            {arePinned && <h6>Other</h6>}
             <ul className="note-list">
                 {notes.map(note =>{
                     if(!note.isPinned){
                     return <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
-                        <div className="note-operators"><button>Color</button><button onClick={(ev)=>onRemoveNote(ev, note.id)}>Delete</button></div></li>
+                        <div className="note-operators">
+                <button onClick={(ev) => onRemoveNote(ev, note.id)}><i class="fa-solid fa-trash"></i></button>
+                <button onClick={() => setIsEdit(true)}><i class="fa-solid fa-pen-to-square"></i></button>
+                <button><i class="fa-solid fa-envelope"></i></button>
+                <button><i class="fa-solid fa-palette"></i></button>
+                <button onClick={(ev) => onPinnedNote(ev, note.id)}><i className= "fa-sharp fa-solid fa-thumbtack" ></i></button>
+                </div></li>
                         }
                 })
             }

@@ -3,8 +3,7 @@ export const asyncStorageService = {
     get,
     post,
     put,
-    remove,
-    unshift
+    remove
 }
 
 function query(entityType, delay = 500) {
@@ -52,17 +51,17 @@ function put(entityType, updatedEntity) {
     })
 }
 
-function unshift(entityType, entityId) {
-    console.log(entityType, entityId);
-    return query(entityType).then(entities => {
-        const idx = entities.findIndex(entity => entity.id === entityId)
-        if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
-        const newEntity = entities.splice(idx, 1)
-        entities.unshift(newEntity)
-        _save(entityType, entities)
-        return entities
-    })
-}
+// function unshift(entityType, entityId) {
+//     console.log(entityType, entityId);
+//     return query(entityType).then(entities => {
+//         const idx = entities.findIndex(entity => entity.id === entityId)
+//         if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
+//         const newEntity = entities.splice(idx, 1)
+//         entities.unshift(newEntity)
+//         _save(entityType, entities)
+//         return entities
+//     })
+// }
 function remove(entityType, entityId) {
     console.log(entityType, entityId);
     return query(entityType).then(entities => {
