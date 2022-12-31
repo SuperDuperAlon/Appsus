@@ -36,6 +36,10 @@
     justify-content: end;
 }
 
+.mail-search-magnifying-glass {
+    
+}
+
 .mail-search-btn >* {
     background: none;
     border: none;

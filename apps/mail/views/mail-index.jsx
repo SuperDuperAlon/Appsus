@@ -7,7 +7,6 @@ import { MailCompose } from "../cmps/mail-compose.jsx";
 import { MailAdd } from "../cmps/mail-add.jsx";
 
 import { mailService } from "../services/mail.service.js";
-import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 export function MailIndex() {
   const [mails, setMails] = useState([]);
@@ -24,22 +23,25 @@ export function MailIndex() {
   }, [sortBy]);
 
   useEffect(() => {
-    loadMails();
-  }, [mails]);
+    setIsCompose(isCompose);
+  }, [true]);
 
   function loadMails() {
     mailService.query(filterBy, sortBy).then((mails) => setMails(mails));
   }
 
   function openComposeBtnSection() {
-    setComposeSection(!composeSection);
-    openMailEditor();
-    console.log(composeSection);
+    setIsCompose(!isCompose);
+  }
+
+  function closeMailEditor() {
+    setIsCompose(!isCompose);
   }
 
   function onSendMail(ev, mailToAdd) {
     ev.preventDefault();
     mailService.post(mailToAdd).then((mail) => {
+      setIsCompose(!isCompose);
       setMails(mails);
       loadMails();
     });
@@ -53,9 +55,10 @@ export function MailIndex() {
     });
   }
 
+  //Sorting functions
+
   function sortByNumbers() {
     let sort = "sentAt";
-    console.log(sort);
     setSortBy(sort);
     loadMails();
   }
@@ -65,6 +68,8 @@ export function MailIndex() {
     setSortBy(sort);
     loadMails();
   }
+
+  // filtering Functions
 
   function filterByText(value) {
     let filter = { ...filterBy, from: value };
@@ -87,8 +92,9 @@ export function MailIndex() {
       .then((mail) => {
         return (mail = { ...mail, isRead: true });
       })
-      .then((mail) => mailService.put(mail))
+      .then((mail) => mailService.put(mail));
     setMails(mails);
+    loadMails();
     return mail;
   }
 
@@ -103,13 +109,11 @@ export function MailIndex() {
         filterByText={filterByText}
         sortByNumbers={sortByNumbers}
         sortByAlphabet={sortByAlphabet}
-        // setReadStatus={setReadStatus}
         filterByRead={filterByRead}
       />
       <MailCompose openComposeBtnSection={openComposeBtnSection} />
       <MailNav
         changeNavStatus={changeNavStatus}
-        // setReadStatus={setReadStatus}
         getUnreadEmailsCount={getUnreadEmailsCount}
       />
       <MailList
@@ -117,7 +121,9 @@ export function MailIndex() {
         onRemoveMail={onRemoveMail}
         changeReadStatus={changeReadStatus}
       />
-      <MailAdd onSendMail={onSendMail} />
+      {isCompose && (
+        <MailAdd onSendMail={onSendMail} closeMailEditor={closeMailEditor} />
+      )}
     </section>
   );
 }

@@ -13,9 +13,10 @@ export function MailSearchBar({
     <section className="mail-search">
       <div className="mail-search-bar">
         <div className="mail-search-form">
+          {/* <div className="mail-search-magnifying-glass"></div>
           <a>
             <i className="fa-solid fa-magnifying-glass"></i>
-          </a>
+          </a> */}
           <form>
             <label htmlFor="sender"></label>
             <input
@@ -29,9 +30,9 @@ export function MailSearchBar({
           </form>
         </div>
         <div className="mail-search-btn">
-          <button onClick={() => filterByRead("unread")}>unread</button>
-          <button onClick={() => filterByRead("read")}>read</button>
-          <button onClick={() => filterByRead("all")}>read</button>
+          <button onClick={() => filterByRead("unread")}><i className="fa-solid fa-envelope"></i></button>
+          <button onClick={() => filterByRead("read")}><i className="fa-solid fa-envelope-open"></i></button>
+          <button onClick={() => filterByRead("all")}><i className="fa-solid fa-envelopes-bulk"></i></button>
           <button onClick={sortByNumbers}>#</button>
           <button onClick={sortByAlphabet}>Aa</button>
         </div>
