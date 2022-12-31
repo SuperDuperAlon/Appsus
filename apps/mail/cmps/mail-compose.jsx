@@ -10,3 +10,7 @@ export function MailCompose({ openComposeBtnSection }) {
     </section>
   );
 }
+
+
+// Compose button will set state to true
+// close button will set state to false

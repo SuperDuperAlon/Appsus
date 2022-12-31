@@ -7,9 +7,8 @@ import {
   showSuccessMsg,
 } from "../services/event-bus.service.js";
 
-export function MailAdd({ onSendMail }) {
+export function MailAdd({ onSendMail, closeMailEditor }) {
   const [mailToAdd, setMailToAdd] = useState(mailService.getTemplateMail());
-  const [isCompose, setIsCompose] = useState(false)
 
 
   function handleChange({ target }) {
@@ -18,12 +17,10 @@ export function MailAdd({ onSendMail }) {
   }
 
   return (
-
     <section className="mail-add">
-      
       <div className="mail-add-header">New Message</div>
       <div className="mail-add-form">
-        <form onSubmit={() => onSendMail(event, mailToAdd)}>
+        <form onSubmit={() => {onSendMail(event, mailToAdd)}}>
           <div className="mail-add-receipient">
             <label htmlFor="receipient"> </label>
             <input
@@ -60,7 +57,11 @@ export function MailAdd({ onSendMail }) {
           </div>
 
           <div>
-            <button className="mail-add-submit-btn">click me</button>
+            <button
+              className="mail-add-submit-btn"
+            >
+              click me
+            </button>
           </div>
         </form>
       </div>
