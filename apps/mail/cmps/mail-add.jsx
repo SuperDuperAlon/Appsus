@@ -10,7 +10,6 @@ import {
 export function MailAdd({ onSendMail, closeMailEditor }) {
   const [mailToAdd, setMailToAdd] = useState(mailService.getTemplateMail());
 
-
   function handleChange({ target }) {
     let { value, name: field } = target;
     setMailToAdd((prevMail) => ({ ...prevMail, [field]: value }));
@@ -20,14 +19,18 @@ export function MailAdd({ onSendMail, closeMailEditor }) {
     <section className="mail-add">
       <div className="mail-add-header">New Message</div>
       <div className="mail-add-form">
-        <form onSubmit={() => {onSendMail(event, mailToAdd)}}>
+        <form
+          onSubmit={() => {
+            onSendMail(event, mailToAdd);
+          }}
+        >
           <div className="mail-add-receipient">
             <label htmlFor="receipient"> </label>
             <input
               type="text"
               name="to"
               id="Receipient"
-              placeholder="Receipient"
+              placeholder="Receipients"
               required
               pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
               value={mailToAdd.to}
@@ -48,20 +51,18 @@ export function MailAdd({ onSendMail, closeMailEditor }) {
             <label htmlFor="mail-body"></label>
             <input
               type="text-area"
+              rows="20"
+              cols="50"
               name="body"
               id="mail-body"
-              placeholder="Body"
+              placeholder=""
               value={mailToAdd.body}
               onChange={handleChange}
             />
           </div>
 
           <div>
-            <button
-              className="mail-add-submit-btn"
-            >
-              click me
-            </button>
+            <button className="mail-add-submit-btn">Send</button>
           </div>
         </form>
       </div>

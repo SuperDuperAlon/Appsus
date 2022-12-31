@@ -71,4 +71,5 @@ tr:hover {
     background-color: #f2f6fc;
     /* background-color: red; */
     font-weight: 400;
+    text-overflow: ellipsis;
 }

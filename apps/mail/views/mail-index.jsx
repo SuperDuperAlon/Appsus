@@ -7,7 +7,6 @@ import { MailCompose } from "../cmps/mail-compose.jsx";
 import { MailAdd } from "../cmps/mail-add.jsx";
 
 import { mailService } from "../services/mail.service.js";
-import { asyncStorageService } from "../../../services/async-storage.service.js";
 
 export function MailIndex() {
   const [mails, setMails] = useState([]);
@@ -36,7 +35,6 @@ export function MailIndex() {
   }
 
   function closeMailEditor() {
-    console.log("this is workng");
     setIsCompose(!isCompose);
   }
 
@@ -61,7 +59,6 @@ export function MailIndex() {
 
   function sortByNumbers() {
     let sort = "sentAt";
-    console.log(sort);
     setSortBy(sort);
     loadMails();
   }
