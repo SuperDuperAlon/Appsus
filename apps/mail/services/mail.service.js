@@ -53,10 +53,12 @@ function query(filterBy = getDefaultFilter(), sortBy) {
       }
     }
     if (sortBy === "from") {
-     mails = mails.sort((a, b) => a.from - b.from);
+      mails = mails.sort((a, b) => a.from.localeCompare(b.from));
     }
     if (sortBy === "sentAt") {
-    mails =  mails.sort((a, b) => a.sentAt - b.sentAt);
+      mails = mails.sort(function (a, b) {
+        return new Date(b.sentAt) - new Date(a.sentAt);
+      });
     }
     console.log(mails);
     return mails;

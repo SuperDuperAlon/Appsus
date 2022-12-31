@@ -71,6 +71,7 @@ export function MailPreview({ mail, onRemoveMail, changeReadStatus }) {
             <h6 className="mail-preview-to">to me</h6>
             <h3 className="mail-preview-body">{mail.body}</h3>
           </div>
+          <button className="mail-preview-save-btn">Save to Notes</button>
         </td>
       </tr>
     </Fragment>

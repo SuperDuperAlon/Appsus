@@ -13,6 +13,7 @@ export function MailIndex() {
   const [mails, setMails] = useState([]);
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter());
   const [sortBy, setSortBy] = useState("sentAt");
+  const [isCompose, setIsCompose] = useState(false);
 
   useEffect(() => {
     loadMails();
@@ -22,12 +23,18 @@ export function MailIndex() {
     loadMails();
   }, [sortBy]);
 
+  useEffect(() => {
+    loadMails();
+  }, [mails]);
+
   function loadMails() {
     mailService.query(filterBy, sortBy).then((mails) => setMails(mails));
   }
 
   function openComposeBtnSection() {
-    console.log("section opened");
+    setComposeSection(!composeSection);
+    openMailEditor();
+    console.log(composeSection);
   }
 
   function onSendMail(ev, mailToAdd) {
@@ -77,18 +84,16 @@ export function MailIndex() {
   function changeReadStatus(mailId) {
     const mail = mailService
       .get(mailId)
-      .then((mail) => console.log(mail))
       .then((mail) => {
-        mail = { ...mail, isRead: true };
+        return (mail = { ...mail, isRead: true });
       })
-      .then((mail) => console.log(mail))
-      .then((mail) => mailService.put(mail));
-    console.log(mail);
+      .then((mail) => mailService.put(mail))
+    setMails(mails);
     return mail;
   }
 
   function getUnreadEmailsCount() {
-    mailService.countUnreadEmails().then((mails) => mails.length);
+    return mailService.countUnreadEmails().then((mails) => mails.length);
   }
 
   if (!mails) return <h1>Loading</h1>;

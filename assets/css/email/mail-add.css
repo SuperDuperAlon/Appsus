@@ -3,10 +3,10 @@
     bottom: 0;
     right: 2%;
     background-color: white;
-    border: solid black 1px;
     width: 526px;
     height: 534px;
-    padding: 0 1rem;
+    border: 1px solid darkgrey;
+
     z-index: 1;
 }
 
@@ -14,7 +14,12 @@
     padding: 10px 0;
     height: 40px;
     background-color: #f2f6fc;
+    padding: 0 1rem;
     width: 100%;
+}
+
+.mail-add-form {
+    padding: 0 1rem;
 }
 
 .mail-add-receipient {
