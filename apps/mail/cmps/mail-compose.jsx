@@ -8,9 +8,5 @@ export function MailCompose({ openComposeBtnSection }) {
         <div className="compose-btn-txt">Compose</div>
       </button>
     </section>
-  );
+  )
 }
-
-
-// Compose button will set state to true
-// close button will set state to false

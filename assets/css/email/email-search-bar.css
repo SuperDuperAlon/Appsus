@@ -3,8 +3,6 @@
     background-color: #f6f8fc;
     height: 46px;
     display: flex;
-    /* margin-left: 56px;
-    margin-right: 96px; */
 }
 
 .mail-search-bar {
@@ -34,10 +32,6 @@
 .mail-search-btn {
     display: flex;
     justify-content: end;
-}
-
-.mail-search-magnifying-glass {
-    
 }
 
 .mail-search-btn >* {

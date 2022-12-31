@@ -1,43 +1,29 @@
-const { useState, Fragment, useEffect } = React;
-
-import { asyncStorageServe } from "../../../services/async-storage.service.js";
-import { mailService } from "../services/mail.service.js";
-
-import { MailOpen } from "./mail-opened.jsx";
+const { useState, Fragment } = React
 
 export function MailPreview({ mail, onRemoveMail, changeReadStatus }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
   function getNameFromEmail(name) {
-    const idx = name.indexOf("@");
-    return name.substring(0, idx);
+    const idx = name.indexOf("@")
+    return name.substring(0, idx)
   }
 
   function setReadStatus(mailId) {
-    changeReadStatus(mailId);
-    setIsExpanded(!isExpanded);
-    const mailToEdit = mailService
-      .get(mailId)
-      .then((mail) => console.log(mail));
-    console.log(mailToEdit);
-    // const mail = Promise.resolve(mailToEdit)
-    // .then((mail) => console.log(mail));
+    changeReadStatus(mailId)
+    setIsExpanded(!isExpanded)
   }
 
   function changeReadStyling() {
-    if (mail.isRead) return "read";
-    else return "";
+    if (mail.isRead) return "read"
+    else return ""
   }
 
   return (
     <Fragment>
       <tr
         className={changeReadStyling()}
-        // onClick={() => {
-        //   setReadStatus(mail.id)
-        // }}
         onClick={() => {
-          setReadStatus(mail.id);
+          setReadStatus(mail.id)
         }}
       >
         <td className="mail-list-star">
@@ -75,5 +61,5 @@ export function MailPreview({ mail, onRemoveMail, changeReadStatus }) {
         </td>
       </tr>
     </Fragment>
-  );
+  )
 }

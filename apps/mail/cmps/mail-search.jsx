@@ -5,18 +5,14 @@ export function MailSearchBar({
   filterByRead,
 }) {
   function handleChange({ target }) {
-    let { value } = target;
-    filterByText(value);
+    let { value } = target
+    filterByText(value)
   }
 
   return (
     <section className="mail-search">
       <div className="mail-search-bar">
         <div className="mail-search-form">
-          {/* <div className="mail-search-magnifying-glass"></div>
-          <a>
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </a> */}
           <form>
             <label htmlFor="sender"></label>
             <input
@@ -38,5 +34,5 @@ export function MailSearchBar({
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,18 +1,18 @@
-const { useState, useEffect } = React;
-const { useNavigate, useParams, Link } = ReactRouterDOM;
+const { useState, useEffconsect } = React
+const { useNavigate, useParams, Link } = ReactRouterDOM
 
-import { mailService } from "../../mail/services/mail.service.js";
+import { mailService } from "../../mail/services/mail.service.js"
 import {
   eventBusService,
   showSuccessMsg,
-} from "../services/event-bus.service.js";
+} from "../services/event-bus.service.js"
 
-export function MailAdd({ onSendMail, closeMailEditor }) {
-  const [mailToAdd, setMailToAdd] = useState(mailService.getTemplateMail());
+export function MailAdd({ onSendMail }) {
+  const [mailToAdd, setMailToAdd] = useState(mailService.getTemplateMail())
 
   function handleChange({ target }) {
-    let { value, name: field } = target;
-    setMailToAdd((prevMail) => ({ ...prevMail, [field]: value }));
+    let { value, name: field } = target
+    setMailToAdd((prevMail) => ({ ...prevMail, [field]: value }))
   }
 
   return (
@@ -21,7 +21,7 @@ export function MailAdd({ onSendMail, closeMailEditor }) {
       <div className="mail-add-form">
         <form
           onSubmit={() => {
-            onSendMail(event, mailToAdd);
+            onSendMail(event, mailToAdd)
           }}
         >
           <div className="mail-add-receipient">
@@ -67,5 +67,5 @@ export function MailAdd({ onSendMail, closeMailEditor }) {
         </form>
       </div>
     </section>
-  );
+  )
 }
