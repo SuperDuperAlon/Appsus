@@ -1,10 +1,10 @@
-import { utilService } from "../../../services/util.service.js";
-import { storageService } from "../../../services/storage.service.js";
-import { asyncStorageService } from "../../../services/async-storage.service.js";
+import { utilService } from "../../../services/util.service.js"
+import { storageService } from "../../../services/storage.service.js"
+import { asyncStorageService } from "../../../services/async-storage.service.js"
 
-const MAIL_KEY = "mailDB";
-const USER_EMAIL = "user@appsus.com";
-_createMails();
+const MAIL_KEY = "mailDB"
+const USER_EMAIL = "user@appsus.com"
+_createMails()
 
 export const mailService = {
   query,
@@ -15,106 +15,104 @@ export const mailService = {
   get,
   post,
   put,
-};
+}
 
 function query(filterBy = getDefaultFilter(), sortBy) {
   return asyncStorageService.query(MAIL_KEY).then((mails) => {
     if (filterBy.from) {
-      const regex = new RegExp(filterBy.from, "i");
-      mails = mails.filter((mail) => regex.test(mail.from));
+      const regex = new RegExp(filterBy.from, "i")
+      mails = mails.filter((mail) => regex.test(mail.from))
     }
     if (filterBy.status) {
       switch (filterBy.status) {
         case "unread":
-          mails = mails.filter((mail) => !mail.isRead);
-          break;
+          mails = mails.filter((mail) => !mail.isRead)
+          break
         case "trash":
-          mails = mails.filter((mail) => mail.removedAt);
-          break;
+          mails = mails.filter((mail) => mail.removedAt)
+          break
         case "inbox":
-          mails = mails.filter((mail) => mail.to === USER_EMAIL);
-          break;
+          mails = mails.filter((mail) => mail.to === USER_EMAIL)
+          break
         case "sent":
-          mails = mails.filter((mail) => mail.from === USER_EMAIL);
-          break;
+          mails = mails.filter((mail) => mail.from === USER_EMAIL)
+          break
       }
     }
     if (filterBy.read) {
       switch (filterBy.read) {
         case "read":
-          mails = mails.filter((mail) => mail.isRead);
-          break;
+          mails = mails.filter((mail) => mail.isRead)
+          break
         case "unread":
-          mails = mails.filter((mail) => !mail.isRead);
-          break;
+          mails = mails.filter((mail) => !mail.isRead)
+          break
         case "all":
-          mails = mails.filter((mail) => mail);
-          break;
+          mails = mails.filter((mail) => mail)
+          break
       }
     }
     if (sortBy === "from") {
-      mails = mails.sort((a, b) => a.from.localeCompare(b.from));
+      mails = mails.sort((a, b) => a.from.localeCompare(b.from))
     }
     if (sortBy === "sentAt") {
       mails = mails.sort(function (a, b) {
-        return new Date(b.sentAt) - new Date(a.sentAt);
-      });
+        return new Date(b.sentAt) - new Date(a.sentAt)
+      })
     }
-    console.log(mails);
-    return mails;
-  });
+    return mails
+  })
 }
 
 function remove(mailId) {
-  return asyncStorageService.remove(MAIL_KEY, mailId);
+  return asyncStorageService.remove(MAIL_KEY, mailId)
 }
 
 function post(mail) {
-  mail = { ...mail };
-  mail.isRead = false;
-  mail.sentAt = getActualDate(Date.now());
-  mail.from = USER_EMAIL;
-  mail.removedAt = null;
-  return asyncStorageService.post(MAIL_KEY, mail);
+  mail = { ...mail }
+  mail.isRead = false
+  mail.sentAt = getActualDate(Date.now())
+  mail.from = USER_EMAIL
+  mail.removedAt = null
+  return asyncStorageService.post(MAIL_KEY, mail)
 }
 
 function put(mail) {
-  console.log(mail);
-  return asyncStorageService.put(MAIL_KEY, mail);
+  return asyncStorageService.put(MAIL_KEY, mail)
 }
 
 function get(mailId) {
-  return asyncStorageService.get(MAIL_KEY, mailId);
+  return asyncStorageService.get(MAIL_KEY, mailId)
 }
 
 function getDefaultFilter() {
-  return { from: "", status: "inbox", read: "all" };
+  return { from: "", status: "inbox", read: "all" }
 }
 
 function getTemplateMail(to = "", subject = "", body = "") {
-  return { to, subject, body };
+  return { to, subject, body }
 }
 
 function getActualDate(date) {
-  const dateToChange = new Date(date);
-  const month = utilService.getMonthName(dateToChange).substring(0, 3);
-  const day = dateToChange.getDate();
-  const paddedDay = utilService.padNum(day);
-  const actualDate = `${month} ${paddedDay}`;
-  return actualDate;
+  const dateToChange = new Date(date)
+  const month = utilService.getMonthName(dateToChange).substring(0, 3)
+  const day = dateToChange.getDate()
+  const paddedDay = utilService.padNum(day)
+  const actualDate = `${month} ${paddedDay}`
+  return actualDate
 }
 
 function countUnreadEmails() {
   return asyncStorageService.query(MAIL_KEY).then((mails) => {
     const filteredMails = mails.filter(
       (mail) => !mail.isRead && mail.to === USER_EMAIL
-    );
-    return filteredMails;
-  });
+    )
+    return filteredMails
+  })
 }
 
 function _createMails() {
-  let mails = storageService.loadFromStorage(MAIL_KEY);
+  let mails = storageService.loadFromStorage(MAIL_KEY)
   if (!mails || !mails.length) {
     mails = [
       {
@@ -327,8 +325,22 @@ function _createMails() {
         from: "dfgsd@dfdfdt.com",
         to: USER_EMAIL,
       },
-    ];
+    ]
 
-    storageService.saveToStorage(MAIL_KEY, mails);
+    storageService.saveToStorage(MAIL_KEY, mails)
   }
 }
+
+
+
+// {
+//   id: utilService.makeId(),
+//   type: "note-txt",
+//   isPinned: true,
+//   info: {
+//       txt: "Fullstack Me Baby!"
+//   },
+//   style: {
+//       backgroundColor: "white"
+//   }
+// },

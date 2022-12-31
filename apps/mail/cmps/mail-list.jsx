@@ -1,7 +1,7 @@
-import { mailService } from "../services/mail.service.js";
-import { asyncStorageServe } from "../../../services/async-storage.service.js";
+import { mailService } from "../services/mail.service.js"
+import { asyncStorageServe } from "../../../services/async-storage.service.js"
 
-import { MailPreview } from "./mail-preview.jsx";
+import { MailPreview } from "./mail-preview.jsx"
 
 export function MailList({ mails, onRemoveMail , changeReadStatus}) {
   return (
@@ -19,5 +19,5 @@ export function MailList({ mails, onRemoveMail , changeReadStatus}) {
         </tbody>
       </table>
     </section>
-  );
+  )
 }

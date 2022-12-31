@@ -32,7 +32,5 @@ var survey =
                 label: 'Description'
             }
         },
-
-       
     ]
 }

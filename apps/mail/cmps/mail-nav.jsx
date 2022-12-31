@@ -1,12 +1,12 @@
-import { mailService  } from "../services/mail.service.js";
+import { mailService  } from "../services/mail.service.js"
 
-const { NavLink } = ReactRouterDOM;
+const { NavLink } = ReactRouterDOM
 
 
 
 
 export function MailNav({ changeNavStatus, getUnreadEmailsCount }) {
-  const unreadEmailsCount = getUnreadEmailsCount();
+  const unreadEmailsCount = getUnreadEmailsCount()
   return (
     <aside className="mail-nav ">
       <ul>
@@ -36,5 +36,5 @@ export function MailNav({ changeNavStatus, getUnreadEmailsCount }) {
         </div>
       </ul>
     </aside>
-  );
+  )
 }
