@@ -19,12 +19,8 @@
 
 }
 
-.alon {
+.authors > :first-child {
     border-right: lightgrey 1px solid
-}
-
-.noah {
-
 }
 
 .about-name {

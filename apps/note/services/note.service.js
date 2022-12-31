@@ -103,7 +103,7 @@ function _createNotes() {
                 type: "note-img",
                 isPinned: false,
                 info: {
-                    url: "/assets/img/puppy.jpg",
+                    url: "./assets/img/puppy.jpg",
                     title: "Feed the dog"
                 },
                 style: {
