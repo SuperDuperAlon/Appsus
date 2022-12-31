@@ -70,7 +70,7 @@ export function NotePreview() {
                 <button onClick={(ev) => onRemovePreviewedNote(ev, clickedNote.id)}><i class="fa-solid fa-trash"></i></button>
                 <button onClick={() => setIsEdit(true)}><i class="fa-solid fa-pen-to-square"></i></button>
                 <button><i class="fa-solid fa-envelope"></i></button>
-                <div className="color-container"><i class="fa-solid fa-palette"></i><input type="color" className="color-input"/></div>
+                {/* <div className="color-container"><i class="fa-solid fa-palette"></i><input type="color" className="color-input"/></div> */}
                 <button onClick={(ev) => onPinnedNote(ev, noteID)}><i className= {(clickedNote.isPinned) ? `fa-sharp fa-solid fa-thumbtack yellow` : `fa-sharp fa-solid fa-thumbtack`} ></i></button>
                 <button onClick={onClosePreview}>Close</button>
             </div>

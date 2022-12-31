@@ -14,7 +14,7 @@ export function NoteList({ notes , onRemoveNote , onOpenPreview, onPinnedNote, o
                     return <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
                    <div className="note-operators">
                 <button onClick={(ev) => onRemoveNote(ev, note.id)}><i className="fa-solid fa-trash"></i></button>
-                <button onClick={() => openEdit(note)}><i class="fa-solid fa-pen-to-square"></i></button>
+                <button onClick={() => openEdit(true)}><i class="fa-solid fa-pen-to-square"></i></button>
                 <button><i class="fa-solid fa-envelope"></i></button>
                 {/* <div className="color-container"><i class="fa-solid fa-palette"></i><input type="color" className="color-input"/></div> */}
                 <button  onClick={(ev) => onPinnedNote(ev, note.id)}><i className= "fa-sharp fa-solid fa-thumbtack yellow" ></i></button>

@@ -1,11 +1,11 @@
 
 .note-list-container{
     /* height: 100vh; */
-    padding: 40px;
+    padding: 50px 100px;
 }
 .note-list{
 
-    column-count: 5;
+    column-count: 6;
     column-gap: 20px;
     column-fill:balance;
 
@@ -24,12 +24,17 @@
     break-inside: avoid
 }
 
+.note h1{
+   padding: 0.5em ;
+   font-weight:400;
+}
+
 .note p{
     contain: content;
  } 
 
 .chack-mark{
-    list-style: none
+    list-style: none;
 }
 
 
@@ -52,5 +57,11 @@
 }
 
 .video-container{
+    padding: 0;
+}
+
+
+
+.img-container{
     padding: 0;
 }

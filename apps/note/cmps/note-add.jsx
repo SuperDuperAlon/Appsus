@@ -75,6 +75,7 @@ export function NoteAdd({ onSaveNote }) {
         if(!newNote.info || (!newNote.info.title && !newNote.info.todos) ) return
         if (!newNote.id){
             console.log(newNote.id);
+            // const newestNote = noteService.getEmptyNote(inputType)
             setNewNote(noteService.getEmptyNote(inputType))
         }
         onSaveNote(ev, newNote)
@@ -85,11 +86,12 @@ export function NoteAdd({ onSaveNote }) {
     //     setNewNote((prevNote) => ({ ...prevNote, newestNote }))
     // }
 
+    console.log();
 
     return <section className={`note-add`} onSubmit={(ev) => saveNote(ev, newNote)}>
         <form>
 
-            {(inputType === 'note-img' || inputType === 'note-video') && <input type="txt"
+            {(newNote.type === 'note-img'|| inputType==='note-img' || inputType==='note-video' || newNote.type === 'note-video') && <input type="txt"
                 name="url"
                 id="url"
                 placeholder="Insert url link"
@@ -103,14 +105,14 @@ export function NoteAdd({ onSaveNote }) {
                 value={newNote.info.title}
                 onChange={handleChange} />
 
-            {inputType === 'note-txt' && <textarea
+            {(newNote.type === 'note-txt'||inputType=== 'note-txt') && <textarea
                 name="txt"
                 id="txt"
                 placeholder="Write a note..."
                 value={newNote.info.txt}
                 onChange={handleChange} />}
 
-            {inputType === 'note-todos' && <textarea onKeyDown={addTodo} type="checkbox"
+            {(newNote.type === 'note-todos' || inputType=== 'note-todos')&& <textarea onKeyDown={addTodo} type="checkbox"
                 name="txt"
                 id="txt"
                 placeholder="Write Todos..."

@@ -1,16 +1,25 @@
+const { useNavigate} = ReactRouterDOM
 
 export function Home() {
+    const navigate = useNavigate()
 
-    return <section className="home">
-        <h1>Appsus</h1>
-        <h2>Your Personal Workspace</h2>
-        <div className="keep">
-        <img src="" alt="" />
+    function moveTo(ev, route) {
+        ev.preventDefault()
+        navigate(`/${route}`)
+        
+    }
+         return <section className="home">
+        {/* <h1>Appsus</h1> */}
+        <h2>Appsus- Your Personal Workspace</h2>
+        <div className="apps">
+        <div onClick={(ev)=>moveTo(ev, 'note')} className="keep">
+        <img src="/assets/img/post-it.png" alt="" />
         <h1>Keep your thoughts clear</h1>
         </div>
-        <div className="mail">
-        <img src="" alt="" />
+        <div onClick={(ev)=>moveTo(ev, 'mail')} className="mail">
+        <img src="/assets/img/inbox.png" alt="" />
         <h1>Write a friend</h1>
+        </div>
         </div>
     </section>
 }

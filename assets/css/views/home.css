@@ -1,0 +1,64 @@
+/* .home{
+    box-sizing: border-box; 
+} */
+
+
+.home h2{
+    font-size: 40px;
+    text-align: center;
+    font-weight: 300 ;
+}
+.home h1{
+    font-size: 25px;
+    text-align: center;
+    font-weight: 400 ;
+    
+}
+
+.apps{
+    text-align: center;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    box-sizing: border-box; 
+}
+
+.keep{
+    /* flex: 0.1; */
+    box-sizing: border-box; 
+    text-align: center;
+    padding: 30px 80px;
+    /* padding-top: 20px; */
+    box-shadow: 0px 1px 3px 0px #787777;
+    border-radius: 0.5rem;
+    height: 300px;
+    width: 350px;
+    cursor: pointer;
+
+}
+
+.mail img{
+    height: 200px;
+    width: fit-content;
+}
+.keep img{ 
+    height: 140px;
+    width: fit-content;
+    padding-bottom: 20px ;
+}
+.mail{
+    box-sizing: border-box; 
+    flex: 0.1;
+    text-align: center;
+    padding: 30px 80px;
+    box-shadow: 0px 1px 3px 0px #787777;
+    border-radius: 0.5rem;
+    height: 300px;
+    width: 350px;
+    cursor: pointer;
+
+}
+
+

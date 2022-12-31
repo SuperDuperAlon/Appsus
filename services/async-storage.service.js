@@ -28,15 +28,6 @@ function post(entityType, newEntity) {
         return newEntity
     })
 }
-// function unshift(entityType, newEntity) {
-//     newEntity = {...newEntity}
-//     // newEntity.id = _makeId()
-//     return query(entityType).then(entities => {
-//         entities.unshift(newEntity)
-//         _save(entityType, entities)
-//         return newEntity
-//     })
-// }
 
 
 

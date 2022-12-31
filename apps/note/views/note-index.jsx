@@ -86,7 +86,8 @@ export function NoteIndex() {
     navigate('/note')
   }
 
-  function openEdit(note){
+  function openEdit(isEdit){
+    // setIsPreview(isEdit)
 
   }
 

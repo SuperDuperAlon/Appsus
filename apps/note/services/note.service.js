@@ -104,7 +104,7 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     url: "/assets/img/puppy.jpg",
-                    title: "Feed the dog"
+                    title: "Take the dog out"
                 },
                 style: {
                     backgroundColor: "var(--note1)"
@@ -115,10 +115,13 @@ function _createNotes() {
                 type: "note-todos",
                 isPinned: false,
                 info: {
-                    title: "Get my stuff together",
+                    title: "This week assignments:",
                     todos: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
+                        { txt: "Practice Css", doneAt: null },
+                        { txt: " Practice React", doneAt: 187111111 },
+                        { txt: "Eat", doneAt: 187111111 },
+                        { txt: "Sleep", doneAt: 187111150 },
+                        { txt: "Repeat", doneAt: 187111180 }
                     ]
                 },
                 style: {
@@ -134,9 +137,113 @@ function _createNotes() {
                 },
                 style: {
                     backgroundColor: "var(--note3)"
-                }    
-
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-txt",
+                isPinned: true,
+                info: {
+                    title: "Save the date!!",
+                    txt: "23.2.22 - Fullstack developer officially !"
+                },
+                style: {
+                    backgroundColor: "var(--note4)"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-video",
+                isPinned: false,
+                info: {
+                    url: "https://www.youtube.com/embed/tEmt1Znux58",
+                    title: "Sprints be like"
+                },
+                style: {
+                    backgroundColor: "var(--note1)"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-img",
+                isPinned: false,
+                info: {
+                    url: "https://www.hollywoodreporter.com/wp-content/uploads/2014/12/dory_a_l.jpg?w=3000",
+                    title: "Me tying to remember everything we have learned during the sprint"
+                },
+                style: {
+                    backgroundColor: "var(--note-default)"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-todos",
+                isPinned: false,
+                info: {
+                    title: "Mommy's chocolate cake",
+                    todos: [
+                        { txt: "225g/8oz plain flour", doneAt: null },
+                        { txt: " 350g/12½oz caster sugar", doneAt: 187111111 },
+                        { txt: "85g/3oz cocoa powder", doneAt: 187111111 },
+                        { txt: "1½ tsp baking powder", doneAt: 187111150 },
+                        { txt: "2 eggs", doneAt: 187111180 },
+                        { txt: "250ml/9fl oz milk", doneAt: 187111180 }
+                    ]
+                },
+                style: {
+                    backgroundColor: "var(--note4)"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-img",
+                isPinned: false,
+                info: {
+                    url: "https://travellersworldwide.com/wp-content/uploads/2022/07/Shutterstock_1927911998.jpg.webp",
+                    title: "Next destinaion"
+                },
+                style: {
+                    backgroundColor: "var( --note-default)"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    title: "Next year goals:",
+                    txt : "get rich"
+                },
+                style: {
+                    backgroundColor: "var( --note3)"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    title: "Bank pin code:",
+                    txt : "****"
+                },
+                style: {
+                    backgroundColor: "var( --note3)"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    title: "Bank pin code:",
+                    txt : "****"
+                },
+                style: {
+                    backgroundColor: "var( --note2)"
+                }
             }
+            
+            
         ]
         utilService.saveToStorage(NOTE_KEY, notes)
     }
