@@ -34,11 +34,10 @@
     font-weight: bold;
 }
 
-<<<<<<< HEAD
 .yellow{
     color: yellow;
-=======
+}
+
 .capitalize {
     text-transform: capitalize;
->>>>>>> c0fdeca68925800c657fbb7eecb509691f9824db
 }

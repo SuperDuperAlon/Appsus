@@ -104,21 +104,29 @@ export function NoteAdd({ onSaveNote }) {
                 value={newTodo.txt}
                 onChange={handleTodoChange} />}
 
-            {!newNote.id && <input type="color"
+            <div className="note-option main">
+            {!newNote.id && <div className="note-option">
+                <button title="Text" onClick={() => setInputType('note-txt')}><i className="fa-solid fa-a"></i></button>
+                <button title="Image url" onClick={() => setInputType('note-img')}><i className="fa-regular fa-image"></i></button>
+                <button title="Todos" onClick={() => setInputType('note-todos')}><i className="fa-regular fa-square-check"></i></button>
+                <button title="YouTube url" onClick={() => setInputType('note-video')}><i className="fa-brands fa-square-youtube"></i></button>
+                </div>}
+                <button title={newNote.id ? 'Save' : 'Add'} className="add-button"><i className="fa-solid fa-check"></i></button>
+                <div title="Color" className="color-container"><i class="fa-solid fa-palette"></i>
+                <input className="color-input" type="color"
                 name="backgroundColor"
                 value={newNote.style.backgroundColor}
-                onChange={handleChange} />}
-
-            <button className="add-button">{newNote.id ? 'Save' : 'Add'}</button>
+                onChange={handleChange} /></div>
+            </div>
         </form>
 
-
-        {!newNote.id && <div className="note-option">
-            <button onClick={() => setInputType('note-txt')}><i className="fa-regular fa-text"></i></button>
+        {/* {newNote.id ? 'Save' : 'Add'} */}
+        {/* {!newNote.id && <div className="note-option">
+            <button onClick={() => setInputType('note-txt')}><i className="fa-solid fa-a"></i></button>
             <button onClick={() => setInputType('note-img')}><i className="fa-regular fa-image"></i></button>
             <button onClick={() => setInputType('note-todos')}><i className="fa-regular fa-square-check"></i></button>
             <button onClick={() => setInputType('note-video')}><i className="fa-brands fa-square-youtube"></i></button>
-        </div>}
+        </div>} */}
     </section>
 }
 

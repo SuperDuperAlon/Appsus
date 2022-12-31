@@ -2,7 +2,7 @@
 const { useState, useEffect, useRef } = React
 import {DynamicCmp} from "../cmps/dynamic-cmp.jsx"
 
-export function NoteList({ notes , onRemoveNote , onOpenPreview, onPinnedNote}) {
+export function NoteList({ notes , onRemoveNote , onOpenPreview, onPinnedNote, openEdit}) {
 
     const arePinned = notes.some(note=> note.isPinned === true)
 
@@ -14,9 +14,9 @@ export function NoteList({ notes , onRemoveNote , onOpenPreview, onPinnedNote}) 
                     return <li onClick={()=>onOpenPreview(note)} key={note.id} className="note" style={{backgroundColor:note.style.backgroundColor}}><DynamicCmp props={note} />
                    <div className="note-operators">
                 <button onClick={(ev) => onRemoveNote(ev, note.id)}><i className="fa-solid fa-trash"></i></button>
-                <button onClick={() => setIsEdit(true)}><i class="fa-solid fa-pen-to-square"></i></button>
+                <button onClick={() => openEdit(note)}><i class="fa-solid fa-pen-to-square"></i></button>
                 <button><i class="fa-solid fa-envelope"></i></button>
-                <button><i class="fa-solid fa-palette"></i></button>
+                {/* <div className="color-container"><i class="fa-solid fa-palette"></i><input type="color" className="color-input"/></div> */}
                 <button  onClick={(ev) => onPinnedNote(ev, note.id)}><i className= "fa-sharp fa-solid fa-thumbtack yellow" ></i></button>
                 </div></li>
                 }
@@ -32,9 +32,10 @@ export function NoteList({ notes , onRemoveNote , onOpenPreview, onPinnedNote}) 
                 <button onClick={(ev) => onRemoveNote(ev, note.id)}><i class="fa-solid fa-trash"></i></button>
                 <button onClick={() => setIsEdit(true)}><i class="fa-solid fa-pen-to-square"></i></button>
                 <button><i class="fa-solid fa-envelope"></i></button>
-                <button><i class="fa-solid fa-palette"></i></button>
+                {/* <div className="color-container"><i class="fa-solid fa-palette"></i><input type="color" className="color-input"/></div> */}
                 <button onClick={(ev) => onPinnedNote(ev, note.id)}><i className= "fa-sharp fa-solid fa-thumbtack" ></i></button>
-                </div></li>
+                </div>
+                </li>
                         }
                 })
             }

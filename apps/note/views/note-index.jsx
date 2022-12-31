@@ -22,6 +22,7 @@ export function NoteIndex() {
   useEffect(()=>{
     loadNotes()
   },[filterBy])
+  
 
   
   function loadNotes(){
@@ -44,10 +45,12 @@ export function NoteIndex() {
 }
 
   function onRemoveNote(ev, noteId){
+    setIsPreview(false)
     ev.stopPropagation()
     noteService.remove(noteId).then(()=>{
       const updatedNotes = notes.filter(note => note.id !== noteId)
       setNotes(updatedNotes)
+      loadNotes()
     })
     
   }
@@ -89,15 +92,19 @@ export function NoteIndex() {
     navigate('/note')
   }
 
+  function openEdit(note){
+
+  }
+
   // console.log(isPreview); 
   console.log(pinnedNote)
   return (
     <div>
       <NoteFilter onSetFilter={onSetFilter}/>
       <NoteAdd onSaveNote={onSaveNote}/>
-      <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview} onPinnedNote={onPinnedNote}/>
+      <NoteList notes={notes} onRemoveNote={onRemoveNote} onOpenPreview={onOpenPreview} onPinnedNote={onPinnedNote} openEdit={openEdit}/>
       {/* {selectedNote && <Link to=`/car/{selectedNote}`></Link>} */}
-      <Outlet context={[onSaveNote, onPinnedNote, onClosePreview]} />
+      <Outlet context={[onSaveNote, onPinnedNote, onClosePreview, onRemoveNote]} />
       {/* <Outlet context={[onPinnedNote]} /> */}
     </div>
   )
