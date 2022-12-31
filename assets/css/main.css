@@ -11,6 +11,8 @@
 
 /* Views */
 @import './views/home.css';
+/* @import './views/home.css'; */
+@import url('./views/about.css');
 
 /* @import './apps/note/views/note-app.css'; */
 
