@@ -3,7 +3,12 @@
 }
 
 .about img {
-    position: relative; width: 200px; height: 200px; overflow: hidden; border-radius: 50%; margin-bottom: 0.5rem;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
 }
 
 .authors {
@@ -19,7 +24,7 @@
 
 }
 
-.authors > :first-child {
+.authors> :first-child {
     border-right: lightgrey 1px solid
 }
 
@@ -29,7 +34,7 @@
 
 .about-title {
     font-size: 1rem;
-        margin-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .about-desc {
