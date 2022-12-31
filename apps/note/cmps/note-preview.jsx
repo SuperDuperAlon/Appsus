@@ -16,7 +16,7 @@ export function NotePreview() {
     const [isEdit, setIsEdit] = useState(false)
     const [isPinned, setIsPinned] = useState(false)
     const navigate = useNavigate()
-    const [onSaveNote, onPinnedNote, onClosePreview] = useOutletContext()
+    const [onSaveNote, onPinnedNote, onClosePreview, onRemoveNote] = useOutletContext()
 
 
     console.log(onSaveNote);
@@ -48,12 +48,13 @@ export function NotePreview() {
 
     function onRemovePreviewedNote(ev, noteId) {
         ev.stopPropagation()
-        noteService.remove(noteId).then(() => {
-            navigate('/note')
+        // noteService.remove(noteId).then(() => {
+        onRemoveNote(ev,noteId)
+        navigate('/note')
 
             // const updatedNotes = notes.filter(note => note.id !== noteId)
             // setNotes(updatedNotes)
-        })
+        // })
     }
 
     function setPinned() {
@@ -71,7 +72,7 @@ export function NotePreview() {
                 <button onClick={(ev) => onRemovePreviewedNote(ev, clickedNote.id)}><i class="fa-solid fa-trash"></i></button>
                 <button onClick={() => setIsEdit(true)}><i class="fa-solid fa-pen-to-square"></i></button>
                 <button><i class="fa-solid fa-envelope"></i></button>
-                <button><i class="fa-solid fa-palette"></i></button>
+                <div className="color-container"><i class="fa-solid fa-palette"></i><input type="color" className="color-input"/></div>
                 <button onClick={(ev) => onPinnedNote(ev, noteID)}><i className= {(clickedNote.isPinned) ? `fa-sharp fa-solid fa-thumbtack yellow` : `fa-sharp fa-solid fa-thumbtack`} ></i></button>
                 <button onClick={onClosePreview}>Close</button>
             </div>
