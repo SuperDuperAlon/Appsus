@@ -3,7 +3,7 @@ import { asyncStorageServe } from "../../../services/async-storage.service.js";
 
 import { MailPreview } from "./mail-preview.jsx";
 
-export function MailList({ mails, onRemoveMail , changeReadStatus}) {
+export function MailList({ mails, onRemoveMail , setReadStatus}) {
   return (
     <section className="mail-list">
       <table border="1">
@@ -13,7 +13,7 @@ export function MailList({ mails, onRemoveMail , changeReadStatus}) {
               key={mail.id}
               mail={mail}
               onRemoveMail={onRemoveMail}
-              changeReadStatus={changeReadStatus}
+              setReadStatus={setReadStatus}
             />
           ))}
         </tbody>

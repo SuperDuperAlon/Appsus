@@ -39,6 +39,19 @@ function query(filterBy = getDefaultFilter(), sortBy) {
           break;
       }
     }
+    if (filterBy.read) {
+      switch (filterBy.read) {
+        case "read":
+          mails = mails.filter((mail) => mail.isRead);
+          break;
+        case "unread":
+          mails = mails.filter((mail) => !mail.isRead);
+          break;
+        case "all":
+          mails = mails.filter((mail) => mail);
+          break;
+      }
+    }
     if (sortBy === "from") {
       mails.sort((a, b) => a.from - b.from);
     }
@@ -63,7 +76,7 @@ function post(mail) {
 }
 
 function put(mail) {
-  return asyncStorageService.put(MAIL_KEY, book);
+  return asyncStorageService.put(MAIL_KEY, mail);
 }
 
 function get(mailId) {
@@ -71,7 +84,7 @@ function get(mailId) {
 }
 
 function getDefaultFilter() {
-  return { from: "", status: "inbox", readStatus: "" };
+  return { from: "", status: "inbox", read: "all" };
 }
 
 function getTemplateMail(to = "", subject = "", body = "") {

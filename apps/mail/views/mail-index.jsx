@@ -46,10 +46,6 @@ export function MailIndex() {
     });
   }
 
-  function changeReadStatus(mailId, ev) {
-    ev.stopPropagation();
-  }
-
   function sortByNumbers() {
     let sort = "sentAt";
     console.log(sort);
@@ -59,8 +55,6 @@ export function MailIndex() {
 
   function sortByAlphabet() {
     let sort = "from";
-    console.log("this is working");
-    console.log(sort);
     setSortBy(sort);
     loadMails();
   }
@@ -75,6 +69,15 @@ export function MailIndex() {
     setFilterBy(filter);
   }
 
+  function filterByRead(value) {
+    let filter = { ...filterBy, read: value };
+    setFilterBy(filter);
+  }
+
+  function setReadStatus(mailId) {
+    console.log('this is working');
+  }
+
   function getUnreadEmailsCount() {
     mailService.countUnreadEmails().then((mails) => mails.length);
   }
@@ -86,11 +89,13 @@ export function MailIndex() {
         filterByText={filterByText}
         sortByNumbers={sortByNumbers}
         sortByAlphabet={sortByAlphabet}
+        setReadStatus={setReadStatus}
+        filterByRead={filterByRead}
       />
       <MailCompose openComposeBtnSection={openComposeBtnSection} />
       <MailNav
         changeStatus={changeStatus}
-        changeReadStatus={changeReadStatus}
+        setReadStatus={setReadStatus}
         getUnreadEmailsCount={getUnreadEmailsCount}
       />
       <MailList mails={mails} onRemoveMail={onRemoveMail} />

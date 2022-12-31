@@ -5,7 +5,7 @@ const { NavLink } = ReactRouterDOM;
 
 
 
-export function MailNav({ changeStatus, changeReadStatus, getUnreadEmailsCount }) {
+export function MailNav({ changeStatus, getUnreadEmailsCount }) {
   const unreadEmailsCount = getUnreadEmailsCount();
   console.log(unreadEmailsCount);
   return (

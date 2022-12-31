@@ -36,6 +36,7 @@ tr:hover {
 
 .mail-list-from {
     width: 200px;
+    font-weight: bold;
 }
 
 .mail-list-subject {
@@ -58,9 +59,15 @@ tr:hover {
 
 .mail-list-date {
     font-size: 12px;
+    font-weight: bold;
     width: 72px;
 }
 
 .mail-title-bold {
     font-weight: bolder;
+}
+
+.read{
+    background-color: #f2f6fc;
+    font-weight: 400;
 }
