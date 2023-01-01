@@ -3,7 +3,7 @@ export function About() {
     <section className="about">
       <div className="authors">
         <div className="alon">
-          <img src="./assets/img/authors/alon.jpg" alt="" />
+          <img src="assets/img/authors/alon.jpg" alt="" />
           <h1 className="about-name">Alon Mlievski</h1>
           <h2 className="about-title">Full Stack Developer</h2>
           <h4 className="about-desc">Coding Academy student</h4>
@@ -18,7 +18,7 @@ export function About() {
           </div>
         </div>
         <div className="noah">
-          <img src="./assets/img/authors/noah.jpeg" alt="" />
+          <img src="assets/img/authors/noah.jpeg" alt="" />
           <h1 className="about-name">Noah Markovich</h1>
           <h2 className="about-title">Full Stack Developer</h2>
           <h4 className="about-desc">Coding Academy student</h4>
