@@ -10,7 +10,7 @@ export function About() {
           <h4 className="about-desc">Based in Tel Aviv</h4>
           <div className="portfolio-links">
             <a href="https://github.com/SuperDuperAlon">
-              <i class="fa-brands fa-square-github"></i>
+              <i className="fa-brands fa-square-github"></i>
             </a>
             <a href="https://www.linkedin.com/in/alon-mlievski-6756aa74/">
               <i className="fa-brands fa-linkedin"></i>
@@ -25,7 +25,7 @@ export function About() {
           <h4 className="about-desc">Based in Tel Aviv</h4>
           <div className="portfolio-links">
             <a href="https://github.com/Noahmarkovich">
-              <i class="fa-brands fa-square-github"></i>
+              <i className="fa-brands fa-square-github"></i>
             </a>
             <a href="https://www.linkedin.com/in/noah-markovich-956a42201/">
               <i className="fa-brands fa-linkedin"></i>
